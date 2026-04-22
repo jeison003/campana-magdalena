@@ -1,1854 +1,249 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iván Cepeda & Aida Quilcué — Magdalena por el Cambio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-<style>
-  /* ══════════════════════════════════════
-     RESET & BASE
-  ══════════════════════════════════════ */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --red:      #e8320a;
-    --red-dark: #b91c0a;
-    --red-dim:  rgba(232,50,10,0.15);
-    --bg0:      #080e1a;
-    --bg1:      #0d1726;
-    --bg2:      #111f35;
-    --bg3:      #172540;
-    --surface:  #1a2d4a;
-    --border:   rgba(232,50,10,0.2);
-    --border2:  rgba(255,255,255,0.07);
-    --txt:      #f0f4fa;
-    --txt2:     #8fa3bf;
-    --txt3:     #4d6a8a;
-    --gold:     #f0c040;
-    --white:    #ffffff;
-    --r:        6px;
-    --rl:       12px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: var(--bg0);
-    color: var(--txt);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* ══════════════════════════════════════
-     HEADER / NAV
-  ══════════════════════════════════════ */
-  header {
-    position: fixed; top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(8,14,26,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo {
-    display: flex; align-items: center; gap: 10px;
-    text-decoration: none;
-  }
-
-  .logo-badge {
-    width: 38px; height: 38px;
-    background: var(--red);
-    border-radius: 6px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 15px; color: #fff; letter-spacing: 1px;
-    flex-shrink: 0;
-  }
-
-  .logo-text {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px; font-weight: 700;
-    color: var(--txt);
-    line-height: 1.2;
-    letter-spacing: 0.5px;
-  }
-
-  .logo-sub { font-size: 10px; font-weight: 400; color: var(--red); letter-spacing: 1.5px; text-transform: uppercase; }
-
-  nav { display: flex; gap: 4px; }
-
-  .nav-btn {
-    background: none; border: none; cursor: pointer;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 13px; font-weight: 600;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--txt2);
-    padding: 8px 14px; border-radius: var(--r);
-    transition: all 0.2s;
-    position: relative;
-  }
-
-  .nav-btn:hover { color: var(--txt); background: rgba(255,255,255,0.05); }
-
-  .nav-btn.active {
-    color: var(--red);
-    background: var(--red-dim);
-  }
-
-  .nav-btn.active::after {
-    content: '';
-    position: absolute; bottom: -1px; left: 14px; right: 14px;
-    height: 2px; background: var(--red);
-    border-radius: 2px 2px 0 0;
-  }
-
-  /* Mobile menu toggle */
-  .menu-toggle {
-    display: none;
-    background: none; border: none; cursor: pointer;
-    flex-direction: column; gap: 5px; padding: 6px;
-  }
-  .menu-toggle span {
-    display: block; width: 22px; height: 2px;
-    background: var(--txt); border-radius: 2px;
-    transition: all 0.3s;
-  }
-
-  /* ══════════════════════════════════════
-     TOP STRIPE
-  ══════════════════════════════════════ */
-  .top-stripe {
-    position: fixed; top: 0; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, var(--red) 0%, var(--gold) 100%);
-    z-index: 101;
-  }
-
-  /* ══════════════════════════════════════
-     SECTIONS / PAGES
-  ══════════════════════════════════════ */
-  .page { display: none; padding-top: 64px; min-height: 100vh; }
-  .page.active { display: block; }
-
-  /* ══════════════════════════════════════
-     HERO — PORTADA
-  ══════════════════════════════════════ */
-  .hero {
-    position: relative;
-    overflow: hidden;
-    min-height: calc(100vh - 64px);
-    display: flex; align-items: center;
-  }
-
-  /* Animated background */
-  .hero-bg {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(232,50,10,0.12) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 80% at 30% 70%, rgba(17,37,64,0.8) 0%, transparent 80%),
-      var(--bg0);
-  }
-
-  /* Map SVG watermark */
-  .hero-map {
-    position: absolute; right: 0; top: 50%;
-    transform: translateY(-50%);
-    width: 55%; max-width: 700px;
-    opacity: 0.05;
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative; z-index: 2;
-    max-width: 1100px; margin: 0 auto;
-    padding: 80px 24px 60px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-
-  .hero-left {}
-
-  .hero-eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: var(--red);
-    background: var(--red-dim);
-    border: 1px solid var(--border);
-    padding: 5px 12px; border-radius: 20px;
-    margin-bottom: 20px;
-  }
-
-  .hero-eyebrow::before { content: '●'; font-size: 7px; animation: pulse 2s infinite; }
-
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-  .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(52px, 8vw, 88px);
-    line-height: 0.95;
-    letter-spacing: 1px;
-    color: var(--white);
-    margin-bottom: 10px;
-  }
-
-  .hero-title .acc { color: var(--red); }
-  .hero-title .gold { color: var(--gold); }
-
-  .hero-subtitle {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 20px; font-weight: 300;
-    color: var(--txt2); letter-spacing: 1px;
-    margin-bottom: 28px;
-    text-transform: uppercase;
-  }
-
-  .hero-desc {
-    font-size: 16px; color: var(--txt2); line-height: 1.7;
-    max-width: 480px; margin-bottom: 36px;
-  }
-
-  .hero-cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
-
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--red); color: #fff;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px; font-weight: 700;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 13px 24px; border-radius: var(--r);
-    border: none; cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-    box-shadow: 0 4px 24px rgba(232,50,10,0.3);
-  }
-
-  .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); box-shadow: 0 8px 32px rgba(232,50,10,0.4); }
-
-  .btn-outline {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: var(--txt);
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px; font-weight: 700;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 13px 24px; border-radius: var(--r);
-    border: 1px solid var(--border2); cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-
-  .btn-outline:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.2); }
-
-  /* Candidate cards on hero */
-  .hero-right { display: flex; flex-direction: column; gap: 16px; }
-
-  .cand-card {
-    background: var(--surface);
-    border: 1px solid var(--border2);
-    border-radius: var(--rl);
-    overflow: hidden;
-    display: flex;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .cand-card:hover { border-color: var(--border); transform: translateY(-2px); }
-
-  .cand-photo {
-    width: 130px; flex-shrink: 0;
-    background: var(--bg3);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-    min-height: 160px;
-  }
-
-  .cand-photo-placeholder {
-    display: flex; flex-direction: column;
-    align-items: center; gap: 6px;
-  }
-
-  .avatar-circle {
-    width: 64px; height: 64px;
-    border-radius: 50%;
-    border: 2px solid rgba(232,50,10,0.4);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px; color: rgba(232,50,10,0.6);
-    background: rgba(232,50,10,0.08);
-  }
-
-  .photo-hint { font-size: 9px; color: var(--txt3); text-align: center; line-height: 1.4; }
-
-  .cand-body {
-    padding: 18px 20px; flex: 1;
-  }
-
-  .cand-role {
-    font-size: 10px; font-weight: 700;
-    color: var(--red); letter-spacing: 2px;
-    text-transform: uppercase; margin-bottom: 4px;
-  }
-
-  .cand-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 22px; font-weight: 700;
-    color: var(--white); line-height: 1.1; margin-bottom: 8px;
-  }
-
-  .cand-bio {
-    font-size: 13px; color: var(--txt2); line-height: 1.5;
-    margin-bottom: 10px;
-  }
-
-  .cand-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-
-  .tag {
-    font-size: 9px; font-weight: 600; letter-spacing: 0.5px;
-    color: var(--txt3);
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border2);
-    padding: 3px 8px; border-radius: 20px;
-  }
-
-  /* Stats bar */
-  .stats-bar {
-    background: var(--bg1);
-    border-top: 1px solid var(--border2);
-    border-bottom: 1px solid var(--border2);
-    padding: 28px 24px;
-  }
-
-  .stats-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
-
-  .stat-item { text-align: center; }
-
-  .stat-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 42px; color: var(--red);
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 12px; color: var(--txt2);
-    margin-top: 4px; line-height: 1.4;
-  }
-
-  /* ══════════════════════════════════════
-     SECTION WRAPPER
-  ══════════════════════════════════════ */
-  .section-wrap {
-    max-width: 1100px; margin: 0 auto;
-    padding: 60px 24px;
-  }
-
-  .section-eyebrow {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: var(--red); margin-bottom: 10px;
-  }
-
-  .section-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(36px, 5vw, 54px);
-    color: var(--white); letter-spacing: 1px;
-    line-height: 1;
-    margin-bottom: 12px;
-  }
-
-  .section-title .acc { color: var(--red); }
-
-  .section-desc {
-    font-size: 16px; color: var(--txt2); line-height: 1.7;
-    max-width: 600px; margin-bottom: 40px;
-  }
-
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, var(--red) 0%, transparent 100%);
-    margin-bottom: 40px;
-    opacity: 0.3;
-  }
-
-  /* ══════════════════════════════════════
-     LOGROS PAGE
-  ══════════════════════════════════════ */
-  .logros-hero {
-    background: var(--bg1);
-    border-bottom: 1px solid var(--border2);
-    padding: 60px 24px 40px;
-  }
-
-  .logros-hero-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 48px; align-items: center;
-  }
-
-  .nat-stats-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-
-  .nat-stat {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-top: 2px solid var(--red);
-    border-radius: var(--r);
-    padding: 14px 12px;
-  }
-
-  .nat-stat-val {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px; color: var(--red); line-height: 1;
-  }
-
-  .nat-stat-label { font-size: 10px; color: var(--txt2); line-height: 1.4; margin-top: 3px; }
-
-  .chips-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-
-  .chip {
-    font-size: 10px; font-weight: 600;
-    color: var(--txt2);
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border2);
-    padding: 4px 10px; border-radius: 20px;
-  }
-
-  /* Magdalena section */
-  .mag-section {
-    max-width: 1100px; margin: 0 auto;
-    padding: 48px 24px 20px;
-  }
-
-  .mag-section-head {
-    display: flex; align-items: center; gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .mag-dot {
-    width: 10px; height: 10px;
-    border-radius: 50%; background: var(--red); flex-shrink: 0;
-  }
-
-  .mag-label {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 14px; font-weight: 700;
-    color: var(--red); letter-spacing: 2px; text-transform: uppercase;
-  }
-
-  .mag-line { flex: 1; height: 1px; background: var(--border); }
-
-  /* Map + logros layout */
-  .mag-layout {
-    display: grid; grid-template-columns: 200px 1fr;
-    gap: 32px; align-items: start;
-  }
-
-  .dep-map-wrap {
-    position: sticky; top: 100px;
-  }
-
-  .dep-map-label {
-    font-size: 10px; color: var(--txt3);
-    text-align: center; margin-top: 8px;
-    letter-spacing: 1px; text-transform: uppercase;
-  }
-
-  .logros-accordion { display: flex; flex-direction: column; gap: 8px; }
-
-  .logro-group {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: var(--rl);
-    overflow: hidden;
-  }
-
-  .logro-group-header {
-    display: flex; align-items: center; gap: 12px;
-    padding: 14px 18px;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.2s;
-  }
-
-  .logro-group-header:hover { background: rgba(255,255,255,0.03); }
-
-  .logro-group-icon {
-    width: 32px; height: 32px;
-    border-radius: 8px;
-    background: var(--red-dim);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-size: 15px;
-  }
-
-  .logro-group-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 16px; font-weight: 700;
-    color: var(--txt); flex: 1;
-  }
-
-  .logro-group-count {
-    font-size: 11px; color: var(--red);
-    background: var(--red-dim);
-    border: 1px solid var(--border);
-    padding: 2px 8px; border-radius: 20px;
-    margin-right: 8px;
-  }
-
-  .logro-chevron {
-    color: var(--txt3); font-size: 12px;
-    transition: transform 0.3s;
-  }
-
-  .logro-group.open .logro-chevron { transform: rotate(180deg); }
-
-  .logro-group-body {
-    display: none;
-    padding: 0 18px 16px;
-    border-top: 1px solid var(--border2);
-  }
-
-  .logro-group.open .logro-group-body { display: block; }
-
-  .logro-list { list-style: none; margin-top: 14px; }
-
-  .logro-list li {
-    display: flex; gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    font-size: 14px; color: var(--txt2); line-height: 1.5;
-  }
-
-  .logro-list li:last-child { border-bottom: none; }
-
-  .logro-list li::before {
-    content: '▶'; color: var(--red);
-    font-size: 7px; margin-top: 5px; flex-shrink: 0;
-  }
-
-  .logro-list li strong { color: var(--txt); }
-
-  /* Solidaria callout */
-  .solidaria-callout {
-    background: linear-gradient(135deg, rgba(232,50,10,0.1) 0%, rgba(17,31,53,0.8) 100%);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--red);
-    border-radius: 0 var(--rl) var(--rl) 0;
-    padding: 20px 24px;
-    margin: 20px 0;
-  }
-
-  .callout-label {
-    font-size: 10px; font-weight: 700;
-    color: var(--red); letter-spacing: 2px;
-    text-transform: uppercase; margin-bottom: 8px;
-  }
-
-  .callout-text { font-size: 14px; color: var(--txt2); line-height: 1.6; margin-bottom: 12px; }
-  .callout-text strong { color: var(--txt); }
-
-  .callout-quote {
-    padding-left: 14px;
-    border-left: 2px solid rgba(232,50,10,0.3);
-    margin-top: 10px;
-  }
-
-  .callout-q-text { font-size: 13px; color: var(--txt2); font-style: italic; line-height: 1.5; }
-
-  .callout-q-attr {
-    font-size: 11px; color: var(--red); font-weight: 600;
-    margin-top: 5px; letter-spacing: 0.5px;
-  }
-
-  /* "Falta" section */
-  .falta-section {
-    background: var(--bg1);
-    border-top: 1px solid var(--border2);
-    padding: 40px 24px;
-  }
-
-  .falta-inner { max-width: 1100px; margin: 0 auto; }
-
-  .falta-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 12px; margin-top: 24px;
-  }
-
-  .falta-item {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: var(--r);
-    padding: 16px;
-    display: flex; gap: 10px;
-    font-size: 13px; color: var(--txt2); line-height: 1.4;
-  }
-
-  .falta-arrow { color: var(--red); font-size: 14px; flex-shrink: 0; }
-
-  /* Cierre logros */
-  .logros-cierre {
-    background: var(--red);
-    padding: 40px 24px;
-    text-align: center;
-  }
-
-  .logros-cierre-inner { max-width: 800px; margin: 0 auto; }
-
-  .logros-cierre-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(24px, 4vw, 40px);
-    color: #fff; letter-spacing: 1.5px;
-    line-height: 1.1; margin-bottom: 10px;
-  }
-
-  .logros-cierre-sub { font-size: 15px; color: rgba(255,255,255,0.85); line-height: 1.5; }
-
-  /* ══════════════════════════════════════
-     DIFUSIÓN / EVENTOS PAGE
-  ══════════════════════════════════════ */
-  .eventos-hero {
-    background: var(--bg1);
-    border-bottom: 1px solid var(--border2);
-    padding: 60px 24px 40px;
-  }
-
-  .eventos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 16px;
-    max-width: 1100px; margin: 0 auto 48px;
-    padding: 0 24px;
-  }
-
-  .evento-card {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: var(--rl);
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .evento-card:hover { border-color: var(--border); transform: translateY(-2px); }
-
-  .evento-img {
-    height: 160px;
-    background: var(--bg3);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-  }
-
-  .evento-img-placeholder {
-    display: flex; flex-direction: column; align-items: center; gap: 6px;
-    font-size: 11px; color: var(--txt3); text-align: center;
-  }
-
-  .evento-img-placeholder svg { opacity: 0.3; }
-
-  .evento-date-badge {
-    position: absolute; top: 12px; left: 12px;
-    background: var(--red);
-    border-radius: 6px;
-    padding: 4px 10px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 12px; font-weight: 700; color: #fff;
-    letter-spacing: 1px;
-  }
-
-  .evento-type-badge {
-    position: absolute; top: 12px; right: 12px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--border2);
-    border-radius: 20px;
-    padding: 3px 10px;
-    font-size: 10px; color: var(--txt2);
-    font-weight: 600; letter-spacing: 0.5px;
-  }
-
-  .evento-body { padding: 16px 18px 18px; }
-
-  .evento-location {
-    font-size: 11px; color: var(--red);
-    font-weight: 600; letter-spacing: 1.5px;
-    text-transform: uppercase; margin-bottom: 5px;
-    display: flex; align-items: center; gap: 5px;
-  }
-
-  .evento-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 18px; font-weight: 700;
-    color: var(--txt); line-height: 1.2; margin-bottom: 8px;
-  }
-
-  .evento-desc { font-size: 13px; color: var(--txt2); line-height: 1.5; }
-
-  /* Galería placeholder */
-  .galeria-section {
-    background: var(--bg1);
-    border-top: 1px solid var(--border2);
-    padding: 48px 24px;
-  }
-
-  .galeria-inner { max-width: 1100px; margin: 0 auto; }
-
-  .galeria-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px; margin-top: 24px;
-  }
-
-  .galeria-item {
-    aspect-ratio: 1;
-    background: var(--bg3);
-    border-radius: var(--r);
-    border: 1px solid var(--border2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 10px; color: var(--txt3); text-align: center;
-    padding: 10px;
-    line-height: 1.3;
-    transition: border-color 0.2s;
-  }
-
-  .galeria-item:hover { border-color: var(--border); }
-
-  /* ══════════════════════════════════════
-     VOLUNTARIADO PAGE
-  ══════════════════════════════════════ */
-  .vol-hero {
-    background: var(--bg1);
-    border-bottom: 1px solid var(--border2);
-    padding: 60px 24px 40px;
-    position: relative; overflow: hidden;
-  }
-
-  .vol-hero-inner { max-width: 1100px; margin: 0 auto; }
-
-  .vol-cards {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    max-width: 1100px; margin: 0 auto;
-    padding: 48px 24px;
-  }
-
-  .vol-card {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: var(--rl);
-    padding: 32px 28px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .vol-card:hover { border-color: var(--border); transform: translateY(-2px); }
-
-  .vol-card.featured {
-    border-color: var(--border);
-    background: linear-gradient(135deg, rgba(232,50,10,0.08) 0%, var(--bg2) 60%);
-  }
-
-  .vol-icon {
-    width: 52px; height: 52px;
-    background: var(--red-dim);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 24px; margin-bottom: 18px;
-  }
-
-  .vol-card-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 24px; font-weight: 700;
-    color: var(--txt); margin-bottom: 10px;
-  }
-
-  .vol-card-desc { font-size: 14px; color: var(--txt2); line-height: 1.7; margin-bottom: 20px; }
-
-  .vol-perks { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
-
-  .vol-perk {
-    display: flex; gap: 8px; align-items: flex-start;
-    font-size: 13px; color: var(--txt2); line-height: 1.4;
-  }
-
-  .vol-perk::before { content: '✓'; color: var(--red); font-weight: 700; flex-shrink: 0; }
-
-  /* Whatsapp section */
-  .wa-section {
-    background: var(--bg1);
-    border-top: 1px solid var(--border2);
-    padding: 48px 24px;
-  }
-
-  .wa-inner { max-width: 1100px; margin: 0 auto; }
-
-  .wa-box {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: var(--rl);
-    padding: 36px 32px;
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 40px; align-items: center;
-  }
-
-  .wa-left {}
-
-  .wa-logo {
-    width: 60px; height: 60px;
-    background: #25D366;
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 16px;
-  }
-
-  .wa-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px; color: var(--white); letter-spacing: 1px;
-    margin-bottom: 8px;
-  }
-
-  .wa-desc { font-size: 14px; color: var(--txt2); line-height: 1.6; margin-bottom: 20px; }
-
-  .wa-groups { display: flex; flex-direction: column; gap: 10px; }
-
-  .wa-group-btn {
-    display: flex; align-items: center; gap: 12px;
-    background: #25D366;
-    border: none; border-radius: var(--r);
-    padding: 12px 18px; cursor: pointer;
-    text-decoration: none;
-    transition: all 0.2s;
-  }
-
-  .wa-group-btn:hover { background: #1ebe5d; transform: translateY(-1px); }
-
-  .wa-group-btn.secondary {
-    background: transparent;
-    border: 1px solid #25D366;
-  }
-
-  .wa-group-btn.secondary:hover { background: rgba(37,211,102,0.1); }
-
-  .wa-group-label {
-    display: flex; flex-direction: column;
-    text-align: left;
-  }
-
-  .wa-group-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px; font-weight: 700; color: #fff; line-height: 1;
-  }
-
-  .wa-group-sub { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 1px; }
-
-  .wa-group-btn.secondary .wa-group-name { color: #25D366; }
-  .wa-group-btn.secondary .wa-group-sub { color: var(--txt2); }
-
-  .wa-right { text-align: center; }
-
-  .qr-placeholder {
-    width: 180px; height: 180px;
-    background: #fff;
-    border-radius: var(--rl);
-    margin: 0 auto 12px;
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 8px;
-  }
-
-  .qr-placeholder svg { opacity: 0.3; }
-
-  .qr-hint { font-size: 11px; color: var(--txt3); text-align: center; line-height: 1.4; }
-
-  /* Form section */
-  .form-section {
-    max-width: 1100px; margin: 0 auto;
-    padding: 48px 24px;
-  }
-
-  .form-box {
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    border-radius: var(--rl);
-    padding: 36px 32px;
-    max-width: 700px;
-  }
-
-  .form-title {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 26px; font-weight: 700;
-    color: var(--txt); margin-bottom: 6px;
-  }
-
-  .form-desc { font-size: 14px; color: var(--txt2); margin-bottom: 28px; line-height: 1.5; }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
-  .form-group.full { grid-column: 1 / -1; }
-
-  .form-label {
-    font-size: 11px; font-weight: 600;
-    color: var(--txt2); letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .form-input, .form-select, .form-textarea {
-    background: var(--bg3);
-    border: 1px solid var(--border2);
-    border-radius: var(--r);
-    color: var(--txt);
-    font-family: 'Barlow', sans-serif;
-    font-size: 14px;
-    padding: 11px 14px;
-    outline: none;
-    transition: border-color 0.2s;
-    width: 100%;
-  }
-
-  .form-input:focus, .form-select:focus, .form-textarea:focus {
-    border-color: var(--red);
-  }
-
-  .form-select { cursor: pointer; }
-  .form-textarea { min-height: 90px; resize: vertical; }
-
-  .form-check-group { display: flex; flex-direction: column; gap: 8px; }
-
-  .form-check {
-    display: flex; align-items: center; gap: 10px;
-    font-size: 14px; color: var(--txt2); cursor: pointer;
-  }
-
-  .form-check input[type="checkbox"] {
-    width: 16px; height: 16px;
-    accent-color: var(--red);
-    cursor: pointer;
-  }
-
-  .form-submit {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--red); color: #fff;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 15px; font-weight: 700;
-    letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 14px 28px; border-radius: var(--r);
-    border: none; cursor: pointer;
-    margin-top: 10px;
-    transition: all 0.2s;
-    box-shadow: 0 4px 24px rgba(232,50,10,0.25);
-  }
-
-  .form-submit:hover { background: var(--red-dark); transform: translateY(-1px); }
-
-  /* ══════════════════════════════════════
-     FOOTER
-  ══════════════════════════════════════ */
-  footer {
-    background: var(--bg0);
-    border-top: 1px solid var(--border2);
-    padding: 32px 24px;
-    text-align: center;
-  }
-
-  .footer-inner { max-width: 1100px; margin: 0 auto; }
-
-  .footer-logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 20px; color: var(--txt2);
-    letter-spacing: 2px; margin-bottom: 8px;
-  }
-
-  .footer-logo span { color: var(--red); }
-
-  .footer-text { font-size: 12px; color: var(--txt3); line-height: 1.6; }
-
-  .footer-sources {
-    font-size: 11px; color: var(--txt3);
-    margin-top: 12px; line-height: 1.6;
-    max-width: 800px; margin: 12px auto 0;
-  }
-
-  /* ══════════════════════════════════════
-     RESPONSIVE
-  ══════════════════════════════════════ */
-  @media (max-width: 768px) {
-    .nav-btn { display: none; }
-    .menu-toggle { display: flex; }
-
-    nav.mobile-open .nav-btn {
-      display: block; width: 100%;
-      text-align: left; padding: 12px 20px;
-      border-radius: 0;
-    }
-
-    nav.mobile-open {
-      position: fixed; top: 64px; left: 0; right: 0;
-      background: var(--bg0);
-      border-bottom: 1px solid var(--border2);
-      flex-direction: column; gap: 0;
-    }
-
-    .hero-content { grid-template-columns: 1fr; gap: 32px; }
-    .hero-right { display: none; }
-    .stats-inner { grid-template-columns: repeat(2, 1fr); }
-    .logros-hero-inner { grid-template-columns: 1fr; }
-    .nat-stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .mag-layout { grid-template-columns: 1fr; }
-    .dep-map-wrap { display: none; }
-    .falta-grid { grid-template-columns: 1fr 1fr; }
-    .galeria-grid { grid-template-columns: repeat(2, 1fr); }
-    .vol-cards { grid-template-columns: 1fr; }
-    .wa-box { grid-template-columns: 1fr; }
-    .form-row { grid-template-columns: 1fr; }
-  }
-
-  /* ══════════════════════════════════════
-     ANIMATIONS
-  ══════════════════════════════════════ */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .page.active .hero-left,
-  .page.active .hero-right {
-    animation: fadeUp 0.5s ease both;
-  }
-  .page.active .hero-right { animation-delay: 0.1s; }
-
-  /* Notification toast */
-  .toast {
-    position: fixed; bottom: 24px; right: 24px;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--rl); padding: 14px 20px;
-    font-size: 14px; color: var(--txt);
-    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-    z-index: 200; opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.3s;
-    pointer-events: none;
-    max-width: 320px;
-  }
-  .toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  .toast .toast-icon { color: var(--red); margin-right: 8px; }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iván Cepeda & Aida Quilcué — Magdalena por el Cambio</title>
+  <meta name="description" content="Campaña Magdalena por el Cambio. Iván Cepeda y Aida Quilcué. Página principal." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="./assets/css/base.css">
+  <link rel="stylesheet" href="./assets/css/layout.css">
+  <link rel="stylesheet" href="./assets/css/components.css">
+  <link rel="stylesheet" href="./assets/css/utilities.css">
+  <link rel="stylesheet" href="./assets/css/inicio.css">
 </head>
+
 <body>
+  <div class="top-stripe"></div>
 
-<div class="top-stripe"></div>
-
-<!-- ════════════ HEADER ════════════ -->
-<header>
-  <div class="nav-inner">
-    <a class="nav-logo" href="#" onclick="showPage('portada')">
-      <div class="logo-badge">IC</div>
-      <div class="logo-text">
-        Magdalena por el Cambio
-        <div class="logo-sub">Iván & Aida · 2026</div>
-      </div>
-    </a>
-
-    <nav id="main-nav">
-      <button class="nav-btn active" onclick="showPage('portada', this)">Inicio</button>
-      <button class="nav-btn" onclick="showPage('logros', this)">Logros</button>
-      <button class="nav-btn" onclick="showPage('difusion', this)">Difusión</button>
-      <button class="nav-btn" onclick="showPage('voluntariado', this)">Voluntariado</button>
-    </nav>
-
-    <button class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<!-- ════════════════════════════════════
-     PAGE 1: PORTADA
-════════════════════════════════════ -->
-<div class="page active" id="page-portada">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-bg"></div>
-
-    <!-- Mapa grande de fondo -->
-    <svg class="hero-map" viewBox="0 0 280 560" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M95,12 C118,7 158,18 192,38 C218,55 234,85 230,118 C226,151 205,170 200,205
-               C195,240 208,268 203,302 C198,336 178,355 170,390 C162,425 168,455 152,488
-               C136,520 112,534 88,530 C64,526 42,505 36,472 C30,439 40,408 35,375
-               C30,342 14,322 18,290 C22,258 44,238 46,206 C48,174 30,148 36,116
-               C42,84 72,17 95,12 Z"
-            fill="#e8320a"/>
-    </svg>
-
-    <div class="hero-content">
-      <div class="hero-left">
-        <div class="hero-eyebrow">Magdalena · Campaña Presidencial 2026</div>
-        <h1 class="hero-title">
-          El cambio<br>
-          <span class="acc">no</span><br>
-          se detiene
-        </h1>
-        <p class="hero-subtitle">Iván Cepeda & Aida Quilcué · Presidencia</p>
-        <p class="hero-desc">
-          Cuatro años de transformaciones reales en el Magdalena. Ahora continuamos y profundizamos el legado del Gobierno del Cambio. El Magdalena merece un presidente que conozca sus luchas, su cultura y sus sueños.
-        </p>
-        <div class="hero-cta-row">
-          <button class="btn-primary" onclick="showPage('voluntariado', document.querySelectorAll('.nav-btn')[3])">
-            ✊ Únete al equipo
-          </button>
-          <button class="btn-outline" onclick="showPage('logros', document.querySelectorAll('.nav-btn')[1])">
-            Ver logros →
-          </button>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html">
+        <div class="brand-badge">IC</div>
+        <div class="brand-copy">
+          <span class="brand-title">Magdalena por el Cambio</span>
+          <span class="brand-subtitle">Iván & Aida · 2026</span>
         </div>
-      </div>
-
-      <div class="hero-right">
-        <!-- Iván Cepeda -->
-        <div class="cand-card">
-          <div class="cand-photo">
-            <div class="cand-photo-placeholder">
-              <div class="avatar-circle">IC</div>
-              <div class="photo-hint">📷 Foto<br>Iván Cepeda</div>
-            </div>
-          </div>
-          <div class="cand-body">
-            <div class="cand-role">Candidato a Presidente</div>
-            <div class="cand-name">Iván Cepeda Castro</div>
-            <div class="cand-bio">
-              Senador de la República, defensor histórico de los derechos humanos en Colombia. Ha dedicado décadas a documentar crímenes de Estado, paramilitarismo y corrupción. Propone profundizar la paz total, la reforma agraria y la justicia social iniciadas por el Gobierno Petro.
-            </div>
-            <div class="cand-tags">
-              <span class="tag">Derechos Humanos</span>
-              <span class="tag">Senador</span>
-              <span class="tag">Pacto Histórico</span>
-              <span class="tag">Paz Total</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Aida Quilcué -->
-        <div class="cand-card">
-          <div class="cand-photo">
-            <div class="cand-photo-placeholder">
-              <div class="avatar-circle">AQ</div>
-              <div class="photo-hint">📷 Foto<br>Aida Quilcué</div>
-            </div>
-          </div>
-          <div class="cand-body">
-            <div class="cand-role">Candidata a Vicepresidenta</div>
-            <div class="cand-name">Aida Quilcué</div>
-            <div class="cand-bio">
-              Lideresa indígena del pueblo Nasa, ex Consejera Mayor del CRIC. Representante a la Cámara, Aida es voz de los pueblos originarios, las mujeres y las comunidades campesinas. Su candidatura marca un hito histórico en la política colombiana.
-            </div>
-            <div class="cand-tags">
-              <span class="tag">Pueblo Nasa</span>
-              <span class="tag">Representante</span>
-              <span class="tag">CRIC</span>
-              <span class="tag">Justicia Étnica</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <div class="stat-num">21K</div>
-        <div class="stat-label">Hectáreas tituladas<br>en el Magdalena</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">$773B</div>
-        <div class="stat-label">Comprometidos<br>para agua en Santa Marta</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">$85B</div>
-        <div class="stat-label">Invertidos en<br>Unimagdalena</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-num">2.400</div>
-        <div class="stat-label">Familias campesinas<br>beneficiadas</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SECCIÓN BIO EXTENDIDA -->
-  <section class="section-wrap">
-    <div class="section-eyebrow">Quiénes son</div>
-    <h2 class="section-title">Un proyecto de <span class="acc">país</span><br>construido con la gente</h2>
-    <div class="divider"></div>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:40px;">
-      <div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:22px;color:var(--red);margin-bottom:12px;letter-spacing:1px;">IVÁN CEPEDA CASTRO</h3>
-        <p style="font-size:15px;color:var(--txt2);line-height:1.8;margin-bottom:14px;">
-          Abogado, periodista e investigador, Iván Cepeda ha sido una de las voces más valientes del Senado colombiano durante más de una década. Su trabajo incansable para visibilizar las víctimas del paramilitarismo, los «falsos positivos» y la corrupción estructural del Estado lo convirtieron en blanco de amenazas y persecución política.
-        </p>
-        <p style="font-size:15px;color:var(--txt2);line-height:1.8;margin-bottom:14px;">
-          Es hijo del poeta y luchador social Manuel Cepeda Vargas, asesinado por el paramilitarismo en 1994. Esa tragedia personal forjó en él una convicción inquebrantable: Colombia merece un Estado que proteja la vida de su gente, especialmente la de las y los más vulnerables.
-        </p>
-        <p style="font-size:15px;color:var(--txt2);line-height:1.8;">
-          Como candidato a la presidencia propone <strong style="color:var(--txt);">mantener y profundizar</strong> las reformas del Gobierno Petro: la paz total, la reforma agraria, la educación gratuita y la transición hacia una economía productiva que no dependa del extractivismo.
-        </p>
-      </div>
-      <div>
-        <h3 style="font-family:'Barlow Condensed',sans-serif;font-size:22px;color:var(--red);margin-bottom:12px;letter-spacing:1px;">AIDA QUILCUÉ</h3>
-        <p style="font-size:15px;color:var(--txt2);line-height:1.8;margin-bottom:14px;">
-          Lideresa indígena del pueblo Nasa del Cauca, Aida Quilcué fue Consejera Mayor del Consejo Regional Indígena del Cauca (CRIC) y una de las organizadoras de la histórica Minga Indígena de 2008. Es Representante a la Cámara y una figura fundamental en la defensa de la vida, el territorio y los derechos de los pueblos originarios de Colombia.
-        </p>
-        <p style="font-size:15px;color:var(--txt2);line-height:1.8;margin-bottom:14px;">
-          Su candidatura a la vicepresidencia es un hito histórico: representa a los pueblos indígenas, a las mujeres, a los campesinos y a todos los que durante siglos fueron excluidos del poder político en Colombia.
-        </p>
-        <p style="font-size:15px;color:var(--txt2);line-height:1.8;">
-          Para el Magdalena, la candidatura de Aida es especialmente significativa por la fuerte presencia de los pueblos <strong style="color:var(--txt);">Arhuaco, Kogui, Wiwa y Kankuamo</strong> en la Sierra Nevada de Santa Marta, cuya protección y autonomía territorial son una prioridad programática de la fórmula.
-        </p>
-      </div>
-    </div>
-
-    <!-- Frase cierre -->
-    <div style="margin-top:48px;background:var(--bg1);border:1px solid var(--border2);border-left:4px solid var(--red);border-radius:0 var(--rl) var(--rl) 0;padding:24px 28px;">
-      <p style="font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:600;color:var(--txt);line-height:1.3;margin-bottom:8px;">
-        "Se mantendrá y profundizará el legado del gobierno de Gustavo Petro: ¡Vamos por más!"
-      </p>
-      <p style="font-size:13px;color:var(--red);font-weight:600;letter-spacing:1px;text-transform:uppercase;">— Iván Cepeda Castro · Candidato a la Presidencia de la República</p>
-    </div>
-  </section>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo"><span>Magdalena</span> por el Cambio</div>
-      <div class="footer-text">Campaña Presidencial Iván Cepeda & Aida Quilcué · Pacto Histórico · Colombia 2026</div>
-    </div>
-  </footer>
-</div>
-
-<!-- ════════════════════════════════════
-     PAGE 2: LOGROS
-════════════════════════════════════ -->
-<div class="page" id="page-logros">
-
-  <section class="logros-hero">
-    <div class="logros-hero-inner">
-      <div>
-        <div class="section-eyebrow">Gobierno del Cambio · 2022–2026</div>
-        <h1 class="section-title">Transformación <span class="acc">real</span><br>con cifras reales</h1>
-        <p class="section-desc">
-          El gobierno de Gustavo Petro dejó resultados tangibles a nivel nacional y en el Magdalena. Aquí están las evidencias. Ahora toca profundizarlos.
-        </p>
-      </div>
-      <div>
-        <div class="nat-stats-grid">
-          <div class="nat-stat"><div class="nat-stat-val">$2M</div><div class="nat-stat-label">Salario vital mensual — +23,7% real acumulado</div></div>
-          <div class="nat-stat"><div class="nat-stat-val">800K+</div><div class="nat-stat-label">Nuevos estudiantes sin deuda (Ley 2568/2026)</div></div>
-          <div class="nat-stat"><div class="nat-stat-val">2,5M ha</div><div class="nat-stat-label">Tierras entregadas — más que 3 gobiernos anteriores</div></div>
-          <div class="nat-stat"><div class="nat-stat-val">3,6%</div><div class="nat-stat-label">Crecimiento PIB 3er trimestre 2025</div></div>
-          <div class="nat-stat"><div class="nat-stat-val">1.100T</div><div class="nat-stat-label">Cocaína incautada en 2025 — récord histórico</div></div>
-          <div class="nat-stat"><div class="nat-stat-val">8,2%</div><div class="nat-stat-label">Desempleo — mínimo desde 2016</div></div>
-        </div>
-        <div class="chips-row">
-          <span class="chip">Reforma laboral aprobada</span>
-          <span class="chip">Pensión adultos mayores</span>
-          <span class="chip">Inflación 5,5%</span>
-          <span class="chip">Agro +7,1% (2025)</span>
-          <span class="chip">6,7M turistas internacionales</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- LOGROS MAGDALENA -->
-  <section class="mag-section">
-    <div class="mag-section-head">
-      <div class="mag-dot"></div>
-      <div class="mag-label">Logros en el Departamento del Magdalena</div>
-      <div class="mag-line"></div>
-    </div>
-
-    <div class="mag-layout">
-
-      <!-- Mapa del Magdalena -->
-      <div class="dep-map-wrap">
-        <svg viewBox="0 0 200 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;">
-          <path d="M68,10 C86,5 114,14 138,30 C158,44 170,68 167,95 C164,122 148,138 144,165 C140,192 150,212 146,240 C142,268 128,282 122,310 C116,338 120,358 108,380 C96,402 78,410 60,406 C42,402 28,384 24,360 C20,336 28,314 24,290 C20,266 10,250 12,226 C14,202 28,186 30,162 C32,138 22,118 26,94 C30,70 50,15 68,10 Z"
-                fill="rgba(232,50,10,0.15)" stroke="#e8320a" stroke-width="1.5"/>
-
-          <!-- Ciudades -->
-          <circle cx="102" cy="38" r="5" fill="#e8320a"/>
-          <text x="112" y="42" font-size="10" fill="#e8320a" font-family="sans-serif" font-weight="600">Santa Marta</text>
-
-          <circle cx="85" cy="80" r="3.5" fill="rgba(232,50,10,0.6)"/>
-          <text x="93" y="84" font-size="9" fill="rgba(232,50,10,0.7)" font-family="sans-serif">Ciénaga</text>
-
-          <circle cx="72" cy="140" r="3.5" fill="rgba(232,50,10,0.6)"/>
-          <text x="80" y="144" font-size="9" fill="rgba(232,50,10,0.7)" font-family="sans-serif">Aracataca</text>
-
-          <circle cx="58" cy="210" r="3.5" fill="rgba(232,50,10,0.6)"/>
-          <text x="66" y="214" font-size="9" fill="rgba(232,50,10,0.7)" font-family="sans-serif">Fundación</text>
-
-          <circle cx="50" cy="290" r="3.5" fill="rgba(232,50,10,0.6)"/>
-          <text x="58" y="294" font-size="9" fill="rgba(232,50,10,0.7)" font-family="sans-serif">El Banco</text>
-
-          <circle cx="60" cy="340" r="3.5" fill="rgba(232,50,10,0.6)"/>
-          <text x="68" y="344" font-size="9" fill="rgba(232,50,10,0.7)" font-family="sans-serif">Plato</text>
-
-          <!-- Sierra Nevada indicador -->
-          <path d="M110,60 L130,35 L150,60 Z" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-          <text x="108" y="75" font-size="8" fill="rgba(255,255,255,0.4)" font-family="sans-serif">Sierra Nevada</text>
-        </svg>
-        <div class="dep-map-label">Magdalena, Colombia</div>
-      </div>
-
-      <!-- Acordeón de logros -->
-      <div class="logros-accordion">
-
-        <div class="logro-group open">
-          <div class="logro-group-header" onclick="toggleGroup(this)">
-            <div class="logro-group-icon">🌾</div>
-            <div class="logro-group-title">Reforma Agraria y Tierras</div>
-            <div class="logro-group-count">3 logros</div>
-            <div class="logro-chevron">▼</div>
-          </div>
-          <div class="logro-group-body">
-            <ul class="logro-list">
-              <li><strong>Entrega histórica:</strong> más de 21.000 hectáreas productivas tituladas, beneficiando a 2.400 familias campesinas para fortalecer la soberanía alimentaria.</li>
-              <li><strong>Territorio indígena Arhuaco:</strong> más de 1.000 ha entregadas en la zona rural de Aracataca, hito esperado por 12 años, beneficiando directamente a 100 familias indígenas.</li>
-              <li><strong>Magdalena Medio:</strong> más de 24.000 ha destinadas a la Reforma Agraria, incluyendo promesas de compraventa y entregas directas a poblaciones rurales golpeadas por la violencia.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="logro-group">
-          <div class="logro-group-header" onclick="toggleGroup(this)">
-            <div class="logro-group-icon">🎓</div>
-            <div class="logro-group-title">Educación Superior</div>
-            <div class="logro-group-count">3 logros</div>
-            <div class="logro-chevron">▼</div>
-          </div>
-          <div class="logro-group-body">
-            <ul class="logro-list">
-              <li><strong>Inversión récord en Unimagdalena:</strong> más de $85.000 millones para infraestructura educativa, incluyendo el Edificio Río Magdalena ($65.000 M) y la primera fase de Aluna 1.0 ($30.000 M) para IA y saberes ancestrales de la Sierra Nevada.</li>
-              <li><strong>Matrícula gratuita:</strong> en 2025 se destinaron más de $100.000 millones para garantizar la gratuidad de los estudiantes de la región.</li>
-              <li><strong>Nuevos cupos:</strong> la Universidad del Magdalena amplió su cupo en un 25%, priorizando a jóvenes de municipios como Pivijay, El Banco y Fundación.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="logro-group">
-          <div class="logro-group-header" onclick="toggleGroup(this)">
-            <div class="logro-group-icon">💧</div>
-            <div class="logro-group-title">Agua y Saneamiento</div>
-            <div class="logro-group-count">1 logro histórico</div>
-            <div class="logro-chevron">▼</div>
-          </div>
-          <div class="logro-group-body">
-            <ul class="logro-list">
-              <li><strong>Solución definitiva para Santa Marta:</strong> $773.000 millones comprometidos en vigencias futuras para construir dos plantas desalinizadoras. Es el único gobierno que ha comprometido recursos concretos y de tal magnitud para resolver un problema de décadas que afecta especialmente a los más pobres de la capital del departamento.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="logro-group">
-          <div class="logro-group-header" onclick="toggleGroup(this)">
-            <div class="logro-group-icon">🛤️</div>
-            <div class="logro-group-title">Infraestructura y Conectividad</div>
-            <div class="logro-group-count">3 logros</div>
-            <div class="logro-chevron">▼</div>
-          </div>
-          <div class="logro-group-body">
-            <ul class="logro-list">
-              <li><strong>Variante Ciénaga:</strong> inaugurada en diciembre de 2025, mejora la conectividad vial en la zona costera y reduce costos de flete para el banano y el café de la Sierra.</li>
-              <li><strong>Corredor férreo:</strong> adjudicación de la APP La Dorada–Chiriguaná en 2025, con avances para habilitar el tramo hasta Santa Marta para pasajeros.</li>
-              <li><strong>Ruta del Sol 3:</strong> mantenimiento del corredor vital para que los productos del departamento lleguen a los puertos con menores costos.</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="logro-group">
-          <div class="logro-group-header" onclick="toggleGroup(this)">
-            <div class="logro-group-icon">🏥</div>
-            <div class="logro-group-title">Salud y Bienestar Social</div>
-            <div class="logro-group-count">3 logros</div>
-            <div class="logro-chevron">▼</div>
-          </div>
-          <div class="logro-group-body">
-            <ul class="logro-list">
-              <li><strong>Infraestructura rural:</strong> inversión superior a $8.000 millones para mejoramiento y adecuación de 30 centros y puestos de salud en municipios de difícil acceso.</li>
-              <li><strong>Fortalecimiento hospitalario:</strong> $28.689 millones para la infraestructura de salud en articulación con el Ministerio de Salud.</li>
-              <li><strong>Economía popular:</strong> apoyo a 40 unidades productivas mediante incentivos y ferias de comercialización para productos agrícolas y artesanales del departamento.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- ECONOMÍA SOLIDARIA — destacado -->
-        <div class="solidaria-callout">
-          <div class="callout-label">🤝 Economía Solidaria — Orgullo Samario</div>
-          <div class="callout-text">
-            Bajo la gestión del gobierno Petro, <strong>el sector cooperativo colombiano cerró 2025 con un crecimiento del 9% en patrimonio y un aumento del 35% en excedentes.</strong> Se colocaron más de $800.000 millones en crédito productivo, se creó una línea de mejoramiento de vivienda sin garantía hipotecaria y se modernizó el modelo de supervisión para privilegiar las cooperativas rurales pequeñas. Hoy <strong>7,5 millones de colombianos son asociados</strong>, de los cuales 600.000 son mujeres cabeza de hogar.
-          </div>
-          <div class="callout-quote">
-            <div class="callout-q-text">
-              "Las cooperativas están creciendo, tienen más asociados y están generando mayores ingresos. Esto refleja que las políticas implementadas están dando resultados y que el sector se está fortaleciendo."
-            </div>
-            <div class="callout-q-attr">— María José Navarro Muñoz · Superintendente de Economía Solidaria<br>Samaria, egresada de la Universidad del Magdalena · Opinión Caribe, abril 2026</div>
-          </div>
-        </div>
-
-        <div class="logro-group">
-          <div class="logro-group-header" onclick="toggleGroup(this)">
-            <div class="logro-group-icon">🌿</div>
-            <div class="logro-group-title">Turismo, Ambiente y Sierra Nevada</div>
-            <div class="logro-group-count">2 logros</div>
-            <div class="logro-chevron">▼</div>
-          </div>
-          <div class="logro-group-body">
-            <ul class="logro-list">
-              <li><strong>Río Magdalena como eje económico:</strong> implementación del Plan de Acción 2024-2026 de Cormagdalena, alineado con el Plan Nacional de Desarrollo para potenciar el río como motor social.</li>
-              <li><strong>Protección de la Sierra Nevada:</strong> reconocimiento y diálogo directo con los pueblos Arhuaco, Kogui, Wiwa y Kankuamo para la protección ambiental y la autonomía territorial del ecosistema de la Sierra Nevada de Santa Marta.</li>
-            </ul>
-          </div>
-        </div>
-
-      </div><!-- fin acordeón -->
-    </div><!-- fin mag-layout -->
-  </section>
-
-  <!-- LO QUE FALTA -->
-  <div class="falta-section">
-    <div class="falta-inner">
-      <div class="section-eyebrow">Agenda pendiente</div>
-      <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);">Lo que aún falta<br>por <span class="acc">conquistar</span></h2>
-      <div class="falta-grid">
-        <div class="falta-item"><div class="falta-arrow">→</div>Reforma a la salud aprobada y en pleno funcionamiento</div>
-        <div class="falta-item"><div class="falta-arrow">→</div>Conexión ferroviaria Santa Marta operando para pasajeros</div>
-        <div class="falta-item"><div class="falta-arrow">→</div>Solución definitiva del agua en toda la ciudad garantizada</div>
-        <div class="falta-item"><div class="falta-arrow">→</div>Más títulos de tierra para comunidades rurales del Magdalena</div>
-        <div class="falta-item"><div class="falta-arrow">→</div>Expansión de la gratuidad universitaria a todo el departamento</div>
-        <div class="falta-item"><div class="falta-arrow">→</div>Paz total consolidada en el Caribe colombiano</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CIERRE -->
-  <div class="logros-cierre">
-    <div class="logros-cierre-inner">
-      <div class="logros-cierre-title">Se mantendrá y profundizará el legado del gobierno de Gustavo Petro: ¡Vamos por más!</div>
-      <div class="logros-cierre-sub">Iván Cepeda & Aida Quilcué · Presidencia y Vicepresidencia 2026–2030 · Pacto Histórico</div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo"><span>Magdalena</span> por el Cambio</div>
-      <div class="footer-sources">
-        <strong>Fuentes:</strong> Agencia Nacional de Tierras (ANT) · Ministerio de Educación Nacional · Presidencia de la República ·
-        Opinion Caribe (abr. 2026) · Superintendencia de Economía Solidaria / La República (dic. 2025) ·
-        RTV Noticias (nov. 2025) · Radio Nacional de Colombia (ago. 2025) · DANE · Unimagdalena (comunicado de prensa)
-      </div>
-    </div>
-  </footer>
-</div>
-
-<!-- ════════════════════════════════════
-     PAGE 3: DIFUSIÓN / EVENTOS
-════════════════════════════════════ -->
-<div class="page" id="page-difusion">
-
-  <section class="eventos-hero">
-    <div style="max-width:1100px;margin:0 auto;">
-      <div class="section-eyebrow">Campaña en el territorio</div>
-      <h1 class="section-title">Difusión en el <span class="acc">Magdalena</span></h1>
-      <p class="section-desc">Eventos, encuentros y actividades que hemos realizado en el departamento. El cambio se construye en las calles, los barrios y los campos del Magdalena.</p>
-    </div>
-  </section>
-
-  <!-- EVENTOS GRID -->
-  <div style="max-width:1100px;margin:0 auto;padding:48px 24px 0;">
-    <div class="section-eyebrow">Eventos realizados</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);margin-bottom:28px;">Presencia <span class="acc">territorial</span></h2>
-  </div>
-
-  <div class="eventos-grid">
-
-    <div class="evento-card">
-      <div class="evento-img" style="background:linear-gradient(135deg,#1a3a2a,#0d1f17);">
-        <div class="evento-img-placeholder">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="white" stroke-width="1.5"/><circle cx="20" cy="20" r="6" stroke="white" stroke-width="1.5"/></svg>
-          <div>📷 Insertar foto del evento</div>
-        </div>
-        <div class="evento-date-badge">Mar 2026</div>
-        <div class="evento-type-badge">Encuentro</div>
-      </div>
-      <div class="evento-body">
-        <div class="evento-location">📍 Santa Marta</div>
-        <div class="evento-title">Gran Encuentro Ciudadano — Pacto por el Magdalena</div>
-        <div class="evento-desc">Cabildo abierto con líderes comunitarios, campesinos y jóvenes de Santa Marta para construir el programa de gobierno regional.</div>
-      </div>
-    </div>
-
-    <div class="evento-card">
-      <div class="evento-img" style="background:linear-gradient(135deg,#2a1a1a,#1f0d0d);">
-        <div class="evento-img-placeholder">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="white" stroke-width="1.5"/><circle cx="20" cy="20" r="6" stroke="white" stroke-width="1.5"/></svg>
-          <div>📷 Insertar foto del evento</div>
-        </div>
-        <div class="evento-date-badge">Feb 2026</div>
-        <div class="evento-type-badge">Marcha</div>
-      </div>
-      <div class="evento-body">
-        <div class="evento-location">📍 Ciénaga</div>
-        <div class="evento-title">Marcha por la Paz — Zona Bananera</div>
-        <div class="evento-desc">Movilización en la Zona Bananera recordando las luchas históricas del campesinado y exigiendo continuidad de la reforma agraria.</div>
-      </div>
-    </div>
-
-    <div class="evento-card">
-      <div class="evento-img" style="background:linear-gradient(135deg,#1a2a1a,#0d1a0d);">
-        <div class="evento-img-placeholder">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="white" stroke-width="1.5"/><circle cx="20" cy="20" r="6" stroke="white" stroke-width="1.5"/></svg>
-          <div>📷 Insertar foto del evento</div>
-        </div>
-        <div class="evento-date-badge">Ene 2026</div>
-        <div class="evento-type-badge">Foro</div>
-      </div>
-      <div class="evento-body">
-        <div class="evento-location">📍 Aracataca</div>
-        <div class="evento-title">Foro: Territorio y Cultura — Homenaje a García Márquez</div>
-        <div class="evento-desc">Conversatorio sobre identidad cultural del Magdalena, territorio indígena y políticas culturales del Gobierno del Cambio.</div>
-      </div>
-    </div>
-
-    <div class="evento-card">
-      <div class="evento-img" style="background:linear-gradient(135deg,#1a1a2a,#0d0d1f);">
-        <div class="evento-img-placeholder">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="white" stroke-width="1.5"/><circle cx="20" cy="20" r="6" stroke="white" stroke-width="1.5"/></svg>
-          <div>📷 Insertar foto del evento</div>
-        </div>
-        <div class="evento-date-badge">Abr 2026</div>
-        <div class="evento-type-badge">Voluntarios</div>
-      </div>
-      <div class="evento-body">
-        <div class="evento-location">📍 El Banco</div>
-        <div class="evento-title">Encuentro de Voluntarios — Magdalena Medio</div>
-        <div class="evento-desc">Formación de testigos electorales y líderes de puerta a puerta en los municipios del sur del departamento.</div>
-      </div>
-    </div>
-
-    <div class="evento-card">
-      <div class="evento-img" style="background:linear-gradient(135deg,#2a1a2a,#1a0d1a);">
-        <div class="evento-img-placeholder">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="white" stroke-width="1.5"/><circle cx="20" cy="20" r="6" stroke="white" stroke-width="1.5"/></svg>
-          <div>📷 Insertar foto del evento</div>
-        </div>
-        <div class="evento-date-badge">Mar 2026</div>
-        <div class="evento-type-badge">Mural</div>
-      </div>
-      <div class="evento-body">
-        <div class="evento-location">📍 Santa Marta · Barrio Pescaíto</div>
-        <div class="evento-title">Jornada de Arte Urbano — "El Cambio Pintado"</div>
-        <div class="evento-desc">Intervención artística en el histórico barrio Pescaíto, donde el presidente Petro cerró el año 2024. Murales que celebran los logros del gobierno.</div>
-      </div>
-    </div>
-
-    <div class="evento-card">
-      <div class="evento-img" style="background:linear-gradient(135deg,#1a2a2a,#0d1a1a);">
-        <div class="evento-img-placeholder">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="32" height="24" rx="3" stroke="white" stroke-width="1.5"/><circle cx="20" cy="20" r="6" stroke="white" stroke-width="1.5"/></svg>
-          <div>📷 Insertar foto del evento</div>
-        </div>
-        <div class="evento-date-badge">Abr 2026</div>
-        <div class="evento-type-badge">Sierra</div>
-      </div>
-      <div class="evento-body">
-        <div class="evento-location">📍 Sierra Nevada · Comunidades Indígenas</div>
-        <div class="evento-title">Diálogo con Pueblos de la Sierra Nevada</div>
-        <div class="evento-desc">Encuentro con autoridades Arhuacas, Koguis, Wiwas y Kankuamos para construir la propuesta de Aida Quilcué sobre autonomía y territorio indígena.</div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- AGREGAR EVENTO -->
-  <div style="max-width:1100px;margin:0 auto;padding:0 24px 48px;text-align:center;">
-    <div style="background:var(--bg2);border:1px dashed rgba(232,50,10,0.3);border-radius:var(--rl);padding:28px;display:inline-block;min-width:300px;">
-      <div style="font-size:28px;margin-bottom:8px;opacity:0.4;">+</div>
-      <div style="font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;color:var(--txt2);margin-bottom:6px;">¿Tienes fotos o videos de un evento?</div>
-      <div style="font-size:13px;color:var(--txt3);margin-bottom:14px;">Compártelos con el equipo de campaña para publicarlos aquí</div>
-      <button class="btn-primary" onclick="showToast('¡Gracias! Contáctanos por WhatsApp para compartir tu contenido 📲')">Compartir contenido</button>
-    </div>
-  </div>
-
-  <!-- GALERÍA -->
-  <div class="galeria-section">
-    <div class="galeria-inner">
-      <div class="section-eyebrow">Galería</div>
-      <h2 class="section-title" style="font-size:clamp(24px,3.5vw,36px);">Momentos del <span class="acc">territorio</span></h2>
-      <div class="galeria-grid">
-        <div class="galeria-item">📷<br>Foto evento<br>Santa Marta</div>
-        <div class="galeria-item">📷<br>Foto evento<br>Ciénaga</div>
-        <div class="galeria-item">📷<br>Foto evento<br>Aracataca</div>
-        <div class="galeria-item">📷<br>Foto evento<br>Zona Bananera</div>
-        <div class="galeria-item">📷<br>Voluntarios<br>El Banco</div>
-        <div class="galeria-item">📷<br>Sierra Nevada<br>Comunidades</div>
-        <div class="galeria-item">📷<br>Arte urbano<br>Pescaíto</div>
-        <div class="galeria-item">📷<br>+ Próximamente</div>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo"><span>Magdalena</span> por el Cambio</div>
-      <div class="footer-text">Campaña Presidencial Iván Cepeda & Aida Quilcué · Pacto Histórico · Colombia 2026</div>
-    </div>
-  </footer>
-</div>
-
-<!-- ════════════════════════════════════
-     PAGE 4: VOLUNTARIADO
-════════════════════════════════════ -->
-<div class="page" id="page-voluntariado">
-
-  <section class="vol-hero">
-    <div class="vol-hero-inner">
-      <div class="section-eyebrow">Súmate al equipo</div>
-      <h1 class="section-title">El cambio lo hacemos<br><span class="acc">entre todos</span></h1>
-      <p class="section-desc">En el Magdalena necesitamos manos, corazones y voces comprometidas. Hay un rol para cada persona. Elige cómo quieres aportar.</p>
-    </div>
-  </section>
-
-  <!-- TIPOS DE VOLUNTARIADO -->
-  <div class="vol-cards">
-
-    <div class="vol-card featured">
-      <div class="vol-icon">🗳️</div>
-      <div class="vol-card-title">Testigo Electoral</div>
-      <div class="vol-card-desc">
-        El voto vale cuando está bien contado. Los testigos electorales son los guardianes de la democracia el día de las elecciones. Cuidan cada mesa, cada voto y cada acta.
-      </div>
-      <div class="vol-perks">
-        <div class="vol-perk">Capacitación completa sobre el proceso electoral colombiano</div>
-        <div class="vol-perk">Credencial oficial como testigo del Pacto Histórico</div>
-        <div class="vol-perk">Coordinación directa con el equipo jurídico de campaña</div>
-        <div class="vol-perk">Grupo de WhatsApp exclusivo para testigos del Magdalena</div>
-        <div class="vol-perk">Reporte en tiempo real el día de las elecciones</div>
-      </div>
-      <a href="https://michi.movimientopactohistorico.co/register?tiporegistro=testigo" target="_blank" class="btn-primary">
-        Registrarme como testigo →
       </a>
-    </div>
 
-    <div class="vol-card">
-      <div class="vol-icon">✊</div>
-      <div class="vol-card-title">Voluntario de Campaña</div>
-      <div class="vol-card-desc">
-        Desde las redes sociales hasta el puerta a puerta, hay mil formas de sumar. Únete al equipo de voluntariado y elige la línea que mejor se adapte a tus talentos y tiempo.
-      </div>
-      <div class="vol-perks">
-        <div class="vol-perk">Campaña digital: contenidos, redes sociales y difusión</div>
-        <div class="vol-perk">Campaña en calle: puerta a puerta y eventos presenciales</div>
-        <div class="vol-perk">Arte y cultura: murales, música y expresión popular</div>
-        <div class="vol-perk">Transporte: apoyo logístico el día de elecciones</div>
-        <div class="vol-perk">Espacios para publicidad: muros, ventanas y vehículos</div>
-      </div>
-      <a href="https://michi.movimientopactohistorico.co/register?tiporegistro=voluntario" target="_blank" class="btn-primary">
-        Registrarme como voluntario →
-      </a>
-    </div>
+      <nav class="main-nav" id="mainNav">
+        <a class="nav-link is-active" href="./index.html">Inicio</a>
+        <a class="nav-link" href="./pages/logros.html">Logros</a>
+        <a class="nav-link" href="./pages/difusion.html">Difusión</a>
+        <a class="nav-link" href="./pages/voluntariado.html">Voluntariado</a>
+      </nav>
 
-  </div>
-
-  <!-- WHATSAPP -->
-  <div class="wa-section">
-    <div class="wa-inner">
-      <div class="section-eyebrow">Grupos de coordinación</div>
-      <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);margin-bottom:28px;">Únete al <span class="acc">WhatsApp</span></h2>
-      <div class="wa-box">
-        <div class="wa-left">
-          <div class="wa-logo">
-            <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-              <path d="M17 2C9 2 2.5 8.5 2.5 16.5c0 2.6.7 5.1 2 7.2L2 32l8.6-2.3c2 1.1 4.2 1.7 6.4 1.7 8 0 14.5-6.5 14.5-14.5S25 2 17 2z" fill="white"/>
-              <path d="M23.5 20.3c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6 0-.3-.2-1.3-.5-2.5-1.6-.9-.9-1.5-2-1.7-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.4-.5.1-.2.1-.3.2-.5 0-.2 0-.3-.1-.5-.1-.2-.7-1.8-1-2.5-.3-.6-.5-.6-.7-.6h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.7s1.1 3.1 1.3 3.3c.2.2 2.2 3.5 5.3 4.8.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.4.2-1.5z" fill="#25D366"/>
-            </svg>
-          </div>
-          <div class="wa-title">Grupos WhatsApp Magdalena</div>
-          <div class="wa-desc">
-            Coordinamos toda la actividad de campaña en el departamento a través de grupos de WhatsApp. Hay un grupo para voluntarios generales y uno exclusivo para testigos electorales. Únete ahora y empieza a construir el cambio desde adentro.
-          </div>
-          <div class="wa-groups">
-            <a href="https://chat.whatsapp.com/ENLACE_VOLUNTARIOS_MAGDALENA" target="_blank" class="wa-group-btn" onclick="showToast('Actualizá el enlace con el link real del grupo de WhatsApp 📲')">
-              <svg width="22" height="22" viewBox="0 0 34 34" fill="none"><path d="M17 2C9 2 2.5 8.5 2.5 16.5c0 2.6.7 5.1 2 7.2L2 32l8.6-2.3c2 1.1 4.2 1.7 6.4 1.7 8 0 14.5-6.5 14.5-14.5S25 2 17 2z" fill="white"/></svg>
-              <div class="wa-group-label">
-                <div class="wa-group-name">Voluntarios Magdalena</div>
-                <div class="wa-group-sub">Campaña en calle y difusión digital</div>
-              </div>
-            </a>
-            <a href="https://chat.whatsapp.com/ENLACE_TESTIGOS_MAGDALENA" target="_blank" class="wa-group-btn secondary" onclick="showToast('Actualizá el enlace con el link real del grupo de WhatsApp 📲')">
-              <svg width="22" height="22" viewBox="0 0 34 34" fill="none"><path d="M17 2C9 2 2.5 8.5 2.5 16.5c0 2.6.7 5.1 2 7.2L2 32l8.6-2.3c2 1.1 4.2 1.7 6.4 1.7 8 0 14.5-6.5 14.5-14.5S25 2 17 2z" fill="#25D366"/></svg>
-              <div class="wa-group-label">
-                <div class="wa-group-name">Testigos Electorales</div>
-                <div class="wa-group-sub">Solo para testigos registrados</div>
-              </div>
-            </a>
-          </div>
-        </div>
-        <div class="wa-right">
-          <div class="qr-placeholder">
-            <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-              <rect x="8" y="8" width="28" height="28" rx="2" stroke="#333" stroke-width="2"/>
-              <rect x="16" y="16" width="12" height="12" fill="#333"/>
-              <rect x="44" y="8" width="28" height="28" rx="2" stroke="#333" stroke-width="2"/>
-              <rect x="52" y="16" width="12" height="12" fill="#333"/>
-              <rect x="8" y="44" width="28" height="28" rx="2" stroke="#333" stroke-width="2"/>
-              <rect x="16" y="52" width="12" height="12" fill="#333"/>
-              <rect x="44" y="44" width="8" height="8" fill="#333"/>
-              <rect x="56" y="44" width="8" height="8" fill="#333"/>
-              <rect x="44" y="56" width="8" height="8" fill="#333"/>
-              <rect x="56" y="68" width="8" height="8" fill="#333"/>
-            </svg>
-            <div style="font-size:10px;color:#999;text-align:center;line-height:1.3;padding:0 10px;">Reemplazar con QR real del grupo</div>
-          </div>
-          <div class="qr-hint">Escanea el código QR para unirte<br>directamente al grupo de WhatsApp</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FORMULARIO -->
-  <div class="form-section">
-    <div class="section-eyebrow">Registro</div>
-    <h2 class="section-title" style="font-size:clamp(28px,4vw,40px);margin-bottom:28px;">¿No puedes<br><span class="acc">registrarte</span> en línea?</h2>
-    <div class="form-box">
-      <div class="form-title">Deja tus datos aquí</div>
-      <div class="form-desc">Un miembro del equipo te contactará para orientarte sobre cómo sumarte a la campaña o registrarte como testigo electoral.</div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Nombre completo *</label>
-          <input class="form-input" type="text" placeholder="Tu nombre">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Cédula *</label>
-          <input class="form-input" type="text" placeholder="Número de cédula">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Teléfono / WhatsApp *</label>
-          <input class="form-input" type="tel" placeholder="+57 300 000 0000">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Municipio *</label>
-          <select class="form-select">
-            <option value="">Selecciona tu municipio</option>
-            <option>Santa Marta</option>
-            <option>Ciénaga</option>
-            <option>Aracataca</option>
-            <option>Fundación</option>
-            <option>El Banco</option>
-            <option>Plato</option>
-            <option>Pivijay</option>
-            <option>Zona Bananera</option>
-            <option>Chibolo</option>
-            <option>Otro municipio del Magdalena</option>
-          </select>
-        </div>
-        <div class="form-group full">
-          <label class="form-label">¿Cómo quieres participar? *</label>
-          <div class="form-check-group">
-            <label class="form-check"><input type="checkbox"> Testigo electoral el día de las votaciones</label>
-            <label class="form-check"><input type="checkbox"> Voluntario de campaña (puerta a puerta, eventos)</label>
-            <label class="form-check"><input type="checkbox"> Campaña digital (redes sociales, contenidos)</label>
-            <label class="form-check"><input type="checkbox"> Arte y cultura (murales, música, expresión popular)</label>
-            <label class="form-check"><input type="checkbox"> Transporte el día de elecciones</label>
-          </div>
-        </div>
-        <div class="form-group full">
-          <label class="form-label">Mensaje (opcional)</label>
-          <textarea class="form-textarea" placeholder="Cuéntanos en qué barrio o vereda trabajas, o cualquier otra información que quieras compartir..."></textarea>
-        </div>
-      </div>
-      <button class="form-submit" onclick="showToast('¡Registro enviado! El equipo te contactará pronto. ¡Gracias por sumarte! ✊')">
-        ✊ Enviar registro
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
     </div>
-  </div>
+  </header>
 
-  <footer>
-    <div class="footer-inner">
+  <main id="app" class="home-page">
+    <section class="hero">
+      <div class="hero-bg"></div>
+
+      <svg class="hero-map" viewBox="0 0 280 560" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M95,12 C118,7 158,18 192,38 C218,55 234,85 230,118 C226,151 205,170 200,205
+             C195,240 208,268 203,302 C198,336 178,355 170,390 C162,425 168,455 152,488
+             C136,520 112,534 88,530 C64,526 42,505 36,472 C30,439 40,408 35,375
+             C30,342 14,322 18,290 C22,258 44,238 46,206 C48,174 30,148 36,116
+             C42,84 72,17 95,12 Z" fill="#e8320a" />
+      </svg>
+
+      <div class="container hero-content">
+        <div class="hero-left">
+          <div class="hero-eyebrow">Magdalena · Campaña Presidencial 2026</div>
+
+          <h1 class="hero-title">
+            El cambio<br>
+            <span class="acc">no</span><br>
+            se detiene
+          </h1>
+
+          <p class="hero-subtitle">Iván Cepeda & Aida Quilcué · Presidencia</p>
+
+          <p class="hero-desc">
+            Cuatro años de transformaciones reales en el Magdalena. Ahora continuamos y
+            profundizamos el legado del Gobierno del Cambio. El Magdalena merece un presidente
+            que conozca sus luchas, su cultura y sus sueños.
+          </p>
+
+          <div class="hero-cta-row">
+            <a class="btn btn-primary" href="./pages/voluntariado.html">✊ Únete al equipo</a>
+            <a class="btn btn-outline" href="./pages/logros.html">Ver logros →</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <article class="cand-card">
+            <div class="cand-photo">
+              <div class="cand-photo-placeholder">
+                <div class="avatar-circle">IC</div>
+                <div class="photo-hint">📷 Foto<br>Iván Cepeda</div>
+              </div>
+            </div>
+
+            <div class="cand-body">
+              <div class="cand-role">Candidato a Presidente</div>
+              <div class="cand-name">Iván Cepeda Castro</div>
+              <div class="cand-bio">
+                Senador de la República, defensor histórico de los derechos humanos en Colombia.
+                Ha dedicado décadas a documentar crímenes de Estado, paramilitarismo y corrupción.
+                Propone profundizar la paz total, la reforma agraria y la justicia social iniciadas
+                por el Gobierno Petro.
+              </div>
+              <div class="cand-tags">
+                <span class="tag">Derechos Humanos</span>
+                <span class="tag">Senador</span>
+                <span class="tag">Pacto Histórico</span>
+                <span class="tag">Paz Total</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="cand-card">
+            <div class="cand-photo">
+              <div class="cand-photo-placeholder">
+                <div class="avatar-circle">AQ</div>
+                <div class="photo-hint">📷 Foto<br>Aida Quilcué</div>
+              </div>
+            </div>
+
+            <div class="cand-body">
+              <div class="cand-role">Candidata a Vicepresidenta</div>
+              <div class="cand-name">Aida Quilcué</div>
+              <div class="cand-bio">
+                Lideresa indígena del pueblo Nasa, ex Consejera Mayor del CRIC. Representante a la
+                Cámara, Aida es voz de los pueblos originarios, las mujeres y las comunidades
+                campesinas. Su candidatura marca un hito histórico en la política colombiana.
+              </div>
+              <div class="cand-tags">
+                <span class="tag">Pueblo Nasa</span>
+                <span class="tag">Representante</span>
+                <span class="tag">CRIC</span>
+                <span class="tag">Justicia Étnica</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats-bar">
+      <div class="container stats-inner">
+        <div class="stat-item">
+          <div class="stat-num">21K</div>
+          <div class="stat-label">Hectáreas tituladas<br>en el Magdalena</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$773B</div>
+          <div class="stat-label">Comprometidos<br>para agua en Santa Marta</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">$85B</div>
+          <div class="stat-label">Invertidos en<br>Unimagdalena</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">2.400</div>
+          <div class="stat-label">Familias campesinas<br>beneficiadas</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap">
+      <div class="section-eyebrow">Quiénes son</div>
+      <h2 class="section-title section-title-main">
+        Un proyecto de <span class="acc">país</span><br>construido con la gente
+      </h2>
+
+      <div class="divider"></div>
+
+      <div class="bio-grid">
+        <article class="bio-col">
+          <h3 class="bio-title">IVÁN CEPEDA CASTRO</h3>
+
+          <p class="bio-text">
+            Abogado, periodista e investigador, Iván Cepeda ha sido una de las voces más valientes
+            del Senado colombiano durante más de una década. Su trabajo incansable para visibilizar
+            las víctimas del paramilitarismo, los «falsos positivos» y la corrupción estructural del
+            Estado lo convirtieron en blanco de amenazas y persecución política.
+          </p>
+
+          <p class="bio-text">
+            Es hijo del poeta y luchador social Manuel Cepeda Vargas, asesinado por el paramilitarismo
+            en 1994. Esa tragedia personal forjó en él una convicción inquebrantable: Colombia merece
+            un Estado que proteja la vida de su gente, especialmente la de las y los más vulnerables.
+          </p>
+
+          <p class="bio-text">
+            Como candidato a la presidencia propone <strong>mantener y profundizar</strong> las reformas
+            del Gobierno Petro: la paz total, la reforma agraria, la educación gratuita y la transición
+            hacia una economía productiva que no dependa del extractivismo.
+          </p>
+        </article>
+
+        <article class="bio-col">
+          <h3 class="bio-title">AIDA QUILCUÉ</h3>
+
+          <p class="bio-text">
+            Lideresa indígena del pueblo Nasa del Cauca, Aida Quilcué fue Consejera Mayor del Consejo
+            Regional Indígena del Cauca (CRIC) y una de las organizadoras de la histórica Minga
+            Indígena de 2008. Es Representante a la Cámara y una figura fundamental en la defensa de la
+            vida, el territorio y los derechos de los pueblos originarios de Colombia.
+          </p>
+
+          <p class="bio-text">
+            Su candidatura a la vicepresidencia es un hito histórico: representa a los pueblos
+            indígenas, a las mujeres, a los campesinos y a todos los que durante siglos fueron
+            excluidos del poder político en Colombia.
+          </p>
+
+          <p class="bio-text">
+            Para el Magdalena, la candidatura de Aida es especialmente significativa por la fuerte
+            presencia de los pueblos <strong>Arhuaco, Kogui, Wiwa y Kankuamo</strong> en la Sierra
+            Nevada de Santa Marta, cuya protección y autonomía territorial son una prioridad
+            programática de la fórmula.
+          </p>
+        </article>
+      </div>
+
+      <div class="quote-box">
+        <p class="quote-text">
+          "Se mantendrá y profundizará el legado del gobierno de Gustavo Petro: ¡Vamos por más!"
+        </p>
+        <p class="quote-author">
+          — Iván Cepeda Castro · Candidato a la Presidencia de la República
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner footer-inner-centered">
       <div class="footer-logo"><span>Magdalena</span> por el Cambio</div>
-      <div class="footer-text">Campaña Presidencial Iván Cepeda & Aida Quilcué · Pacto Histórico · Colombia 2026</div>
-      <div class="footer-sources" style="margin-top:8px;">
-        Registro oficial en: <a href="https://michi.movimientopactohistorico.co" target="_blank" style="color:var(--red);">michi.movimientopactohistorico.co</a>
+      <div class="footer-text">
+        Campaña Presidencial Iván Cepeda & Aida Quilcué · Pacto Histórico · Colombia 2026
       </div>
     </div>
   </footer>
-</div>
 
-<!-- TOAST -->
-<div class="toast" id="toast">
-  <span class="toast-icon">●</span><span id="toast-msg"></span>
-</div>
+  <div class="toast" id="toast">
+    <span id="toastMessage"></span>
+  </div>
 
-<!-- ════════════ SCRIPTS ════════════ -->
-<script>
-  function showPage(pageId, btn) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-
-    document.getElementById('page-' + pageId).classList.add('active');
-
-    if (btn) {
-      btn.classList.add('active');
-    } else {
-      const btns = document.querySelectorAll('.nav-btn');
-      const pages = ['portada', 'logros', 'difusion', 'voluntariado'];
-      const idx = pages.indexOf(pageId);
-      if (idx >= 0 && btns[idx]) btns[idx].classList.add('active');
-    }
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Close mobile menu
-    document.getElementById('main-nav').classList.remove('mobile-open');
-  }
-
-  function toggleGroup(header) {
-    const group = header.parentElement;
-    group.classList.toggle('open');
-  }
-
-  function toggleMenu() {
-    document.getElementById('main-nav').classList.toggle('mobile-open');
-  }
-
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    document.getElementById('toast-msg').textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 4000);
-  }
-
-  // Open all logro groups initially
-  document.querySelectorAll('.logro-group').forEach((g, i) => {
-    if (i > 0) g.classList.remove('open');
-  });
-</script>
-
+  <script type="module" src="./assets/js/app.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,40 @@
+:root {
+  --color-primary: #e8320a;
+  --color-primary-dark: #b91c0a;
+  --color-primary-soft: rgba(232, 50, 10, 0.15);
+
+  --color-accent: #f0c040;
+
+  --color-bg: #080e1a;
+  --color-bg-alt: #0d1726;
+  --color-bg-soft: #111f35;
+  --color-bg-deep: #172540;
+  --color-surface: #1a2d4a;
+
+  --color-text: #f0f4fa;
+  --color-text-muted: #8fa3bf;
+  --color-text-soft: #4d6a8a;
+  --color-white: #ffffff;
+
+  --color-border: rgba(232, 50, 10, 0.2);
+  --color-border-soft: rgba(255, 255, 255, 0.07);
+  --color-border-strong: rgba(232, 50, 10, 0.22);
+
+  --font-display: "Bebas Neue", sans-serif;
+  --font-heading: "Barlow Condensed", sans-serif;
+  --font-body: "Barlow", sans-serif;
+
+  --container-width: 1100px;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.25);
+  --shadow-primary: 0 4px 24px rgba(232, 50, 10, 0.3);
+
+  --header-height: 64px;
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
