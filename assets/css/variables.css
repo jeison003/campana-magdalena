@@ -1,39 +1,43 @@
 :root {
-  --color-primary: #e8320a;
-  --color-primary-dark: #b91c0a;
-  --color-primary-soft: rgba(232, 50, 10, 0.15);
+  /* COLORES BASE */
+  --color-primary: #f28c00;
+  /* naranja */
+  --color-secondary: #5a4bb7;
+  /* morado */
+  --color-accent: #e63946;
+  /* rojo apoyo */
 
-  --color-accent: #f0c040;
+  /* FONDOS */
+  --color-bg: #f4f1ea;
+  --color-bg-soft: #ffffff;
+  --color-surface: #ffffff;
 
-  --color-bg: #080e1a;
-  --color-bg-alt: #0d1726;
-  --color-bg-soft: #111f35;
-  --color-bg-deep: #172540;
-  --color-surface: #1a2d4a;
+  /* TEXTOS */
+  --color-text: #1a1a1a;
+  --color-text-muted: #555;
+  --color-text-soft: #888;
 
-  --color-text: #f0f4fa;
-  --color-text-muted: #8fa3bf;
-  --color-text-soft: #4d6a8a;
-  --color-white: #ffffff;
+  /* BORDES */
+  --color-border: #e6e2dc;
+  --color-border-soft: #efebe5;
 
-  --color-border: rgba(232, 50, 10, 0.2);
-  --color-border-soft: rgba(255, 255, 255, 0.07);
-  --color-border-strong: rgba(232, 50, 10, 0.22);
-
+  /* TIPOGRAFÍA */
   --font-display: "Bebas Neue", sans-serif;
   --font-heading: "Barlow Condensed", sans-serif;
-  --font-body: "Barlow", sans-serif;
+  --font-body: "Nunito Sans", sans-serif;
 
-  --container-width: 1100px;
+  /* LAYOUT */
+  --container-width: 1180px;
 
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
+  /* UI */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
 
-  --shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.25);
-  --shadow-primary: 0 4px 24px rgba(232, 50, 10, 0.3);
+  --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --shadow-primary: 0 10px 30px rgba(242, 140, 0, 0.2);
 
-  --header-height: 64px;
+  --header-height: 78px;
 
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;

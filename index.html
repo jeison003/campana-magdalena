@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Condensed:wght@300;400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:wght@400;500;600;700;800;900&display=swap"
     rel="stylesheet">
 
   <link rel="stylesheet" href="./assets/css/variables.css">
@@ -51,30 +51,28 @@
   </header>
 
   <main id="app" class="home-page">
-    <section class="hero">
-      <div class="hero-bg"></div>
-
-      <svg class="hero-map" viewBox="0 0 280 560" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M95,12 C118,7 158,18 192,38 C218,55 234,85 230,118 C226,151 205,170 200,205
-             C195,240 208,268 203,302 C198,336 178,355 170,390 C162,425 168,455 152,488
-             C136,520 112,534 88,530 C64,526 42,505 36,472 C30,439 40,408 35,375
-             C30,342 14,322 18,290 C22,258 44,238 46,206 C48,174 30,148 36,116
-             C42,84 72,17 95,12 Z" fill="#e8320a" />
-      </svg>
-
-      <div class="container hero-content">
-        <div class="hero-left">
+    <section class="home-hero">
+      <div class="container home-hero-grid">
+        <div class="home-hero-copy">
           <div class="hero-eyebrow">Magdalena · Campaña Presidencial 2026</div>
 
-          <h1 class="hero-title">
-            El cambio<br>
-            <span class="acc">no</span><br>
-            se detiene
+          <h1 class="home-title">
+            <span>El cambio</span>
+            <strong>No</strong>
+            <span>Se detiene</span>
           </h1>
+
+          <div class="brand-stripe">
+            <span class="stripe-orange"></span>
+            <span class="stripe-blue"></span>
+            <span class="stripe-red"></span>
+            <span class="stripe-green"></span>
+            <span class="stripe-purple"></span>
+          </div>
 
           <p class="hero-subtitle">Iván Cepeda & Aida Quilcué · Presidencia</p>
 
-          <p class="hero-desc">
+          <p class="home-lead">
             Cuatro años de transformaciones reales en el Magdalena. Ahora continuamos y
             profundizamos el legado del Gobierno del Cambio. El Magdalena merece un presidente
             que conozca sus luchas, su cultura y sus sueños.
@@ -86,58 +84,68 @@
           </div>
         </div>
 
-        <div class="hero-right">
-          <article class="cand-card">
-            <div class="cand-photo">
-              <div class="cand-photo-placeholder">
-                <div class="avatar-circle">IC</div>
-                <div class="photo-hint">📷 Foto<br>Iván Cepeda</div>
-              </div>
-            </div>
-
-            <div class="cand-body">
-              <div class="cand-role">Candidato a Presidente</div>
-              <div class="cand-name">Iván Cepeda Castro</div>
-              <div class="cand-bio">
-                Senador de la República, defensor histórico de los derechos humanos en Colombia.
-                Ha dedicado décadas a documentar crímenes de Estado, paramilitarismo y corrupción.
-                Propone profundizar la paz total, la reforma agraria y la justicia social iniciadas
-                por el Gobierno Petro.
-              </div>
-              <div class="cand-tags">
-                <span class="tag">Derechos Humanos</span>
-                <span class="tag">Senador</span>
-                <span class="tag">Pacto Histórico</span>
-                <span class="tag">Paz Total</span>
-              </div>
-            </div>
+        <div class="home-hero-visual">
+          <article class="candidate-card candidate-card-ivan">
+            <div class="candidate-avatar">IC</div>
+            <div class="candidate-photo-hint">📷 Foto<br>Iván Cepeda</div>
           </article>
 
-          <article class="cand-card">
-            <div class="cand-photo">
-              <div class="cand-photo-placeholder">
-                <div class="avatar-circle">AQ</div>
-                <div class="photo-hint">📷 Foto<br>Aida Quilcué</div>
-              </div>
-            </div>
-
-            <div class="cand-body">
-              <div class="cand-role">Candidata a Vicepresidenta</div>
-              <div class="cand-name">Aida Quilcué</div>
-              <div class="cand-bio">
-                Lideresa indígena del pueblo Nasa, ex Consejera Mayor del CRIC. Representante a la
-                Cámara, Aida es voz de los pueblos originarios, las mujeres y las comunidades
-                campesinas. Su candidatura marca un hito histórico en la política colombiana.
-              </div>
-              <div class="cand-tags">
-                <span class="tag">Pueblo Nasa</span>
-                <span class="tag">Representante</span>
-                <span class="tag">CRIC</span>
-                <span class="tag">Justicia Étnica</span>
-              </div>
-            </div>
+          <article class="candidate-card candidate-card-aida">
+            <div class="candidate-avatar">AQ</div>
+            <div class="candidate-photo-hint">📷 Foto<br>Aida Quilcué</div>
           </article>
         </div>
+      </div>
+    </section>
+
+    <section class="home-dashboard">
+      <div class="container dashboard-grid">
+        <article class="candidate-info-card">
+          <div class="candidate-info-heading">
+            <span class="candidate-info-icon">IC</span>
+            <div>
+              <p>Candidato a Presidente</p>
+              <h2>Iván Cepeda Castro</h2>
+            </div>
+          </div>
+
+          <p>
+            Senador de la República, defensor histórico de los derechos humanos en Colombia.
+            Ha dedicado décadas a documentar crímenes de Estado, paramilitarismo y corrupción.
+            Propone profundizar la paz total, la reforma agraria y la justicia social iniciadas
+            por el Gobierno Petro.
+          </p>
+
+          <div class="cand-tags">
+            <span class="tag">Derechos Humanos</span>
+            <span class="tag">Senador</span>
+            <span class="tag">Pacto Histórico</span>
+            <span class="tag">Paz Total</span>
+          </div>
+        </article>
+
+        <article class="candidate-info-card">
+          <div class="candidate-info-heading">
+            <span class="candidate-info-icon orange">AQ</span>
+            <div>
+              <p>Candidata a Vicepresidenta</p>
+              <h2>Aida Quilcué</h2>
+            </div>
+          </div>
+
+          <p>
+            Lideresa indígena del pueblo Nasa, ex Consejera Mayor del CRIC. Representante a la
+            Cámara, Aida es voz de los pueblos originarios, las mujeres y las comunidades
+            campesinas. Su candidatura marca un hito histórico en la política colombiana.
+          </p>
+
+          <div class="cand-tags">
+            <span class="tag">Pueblo Nasa</span>
+            <span class="tag">Representante</span>
+            <span class="tag">CRIC</span>
+            <span class="tag">Justicia Étnica</span>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -163,76 +171,81 @@
     </section>
 
     <section class="section-wrap">
-      <div class="section-eyebrow">Quiénes son</div>
-      <h2 class="section-title section-title-main">
-        Un proyecto de <span class="acc">país</span><br>construido con la gente
-      </h2>
+      <div class="container">
+        <div class="section-eyebrow">Quiénes son</div>
 
-      <div class="divider"></div>
+        <h2 class="section-title section-title-main">
+          Un proyecto de <span class="acc">país</span><br>construido con la gente
+        </h2>
 
-      <div class="bio-grid">
-        <article class="bio-col">
-          <h3 class="bio-title">IVÁN CEPEDA CASTRO</h3>
+        <div class="divider"></div>
 
-          <p class="bio-text">
-            Abogado, periodista e investigador, Iván Cepeda ha sido una de las voces más valientes
-            del Senado colombiano durante más de una década. Su trabajo incansable para visibilizar
-            las víctimas del paramilitarismo, los «falsos positivos» y la corrupción estructural del
-            Estado lo convirtieron en blanco de amenazas y persecución política.
+        <div class="bio-grid">
+          <article class="bio-col">
+            <h3 class="bio-title">IVÁN CEPEDA CASTRO</h3>
+
+            <p class="bio-text">
+              Abogado, periodista e investigador, Iván Cepeda ha sido una de las voces más valientes
+              del Senado colombiano durante más de una década. Su trabajo incansable para visibilizar
+              las víctimas del paramilitarismo, los «falsos positivos» y la corrupción estructural del
+              Estado lo convirtieron en blanco de amenazas y persecución política.
+            </p>
+
+            <p class="bio-text">
+              Es hijo del poeta y luchador social Manuel Cepeda Vargas, asesinado por el paramilitarismo
+              en 1994. Esa tragedia personal forjó en él una convicción inquebrantable: Colombia merece
+              un Estado que proteja la vida de su gente, especialmente la de las y los más vulnerables.
+            </p>
+
+            <p class="bio-text">
+              Como candidato a la presidencia propone <strong>mantener y profundizar</strong> las reformas
+              del Gobierno Petro: la paz total, la reforma agraria, la educación gratuita y la transición
+              hacia una economía productiva que no dependa del extractivismo.
+            </p>
+          </article>
+
+          <article class="bio-col">
+            <h3 class="bio-title">AIDA QUILCUÉ</h3>
+
+            <p class="bio-text">
+              Lideresa indígena del pueblo Nasa del Cauca, Aida Quilcué fue Consejera Mayor del Consejo
+              Regional Indígena del Cauca (CRIC) y una de las organizadoras de la histórica Minga
+              Indígena de 2008. Es Representante a la Cámara y una figura fundamental en la defensa de la
+              vida, el territorio y los derechos de los pueblos originarios de Colombia.
+            </p>
+
+            <p class="bio-text">
+              Su candidatura a la vicepresidencia es un hito histórico: representa a los pueblos
+              indígenas, a las mujeres, a los campesinos y a todos los que durante siglos fueron
+              excluidos del poder político en Colombia.
+            </p>
+
+            <p class="bio-text">
+              Para el Magdalena, la candidatura de Aida es especialmente significativa por la fuerte
+              presencia de los pueblos <strong>Arhuaco, Kogui, Wiwa y Kankuamo</strong> en la Sierra
+              Nevada de Santa Marta, cuya protección y autonomía territorial son una prioridad
+              programática de la fórmula.
+            </p>
+          </article>
+        </div>
+
+        <div class="quote-box">
+          <p class="quote-text">
+            "Se mantendrá y profundizará el legado del gobierno de Gustavo Petro: ¡Vamos por más!"
           </p>
-
-          <p class="bio-text">
-            Es hijo del poeta y luchador social Manuel Cepeda Vargas, asesinado por el paramilitarismo
-            en 1994. Esa tragedia personal forjó en él una convicción inquebrantable: Colombia merece
-            un Estado que proteja la vida de su gente, especialmente la de las y los más vulnerables.
+          <p class="quote-author">
+            — Iván Cepeda Castro · Candidato a la Presidencia de la República
           </p>
-
-          <p class="bio-text">
-            Como candidato a la presidencia propone <strong>mantener y profundizar</strong> las reformas
-            del Gobierno Petro: la paz total, la reforma agraria, la educación gratuita y la transición
-            hacia una economía productiva que no dependa del extractivismo.
-          </p>
-        </article>
-
-        <article class="bio-col">
-          <h3 class="bio-title">AIDA QUILCUÉ</h3>
-
-          <p class="bio-text">
-            Lideresa indígena del pueblo Nasa del Cauca, Aida Quilcué fue Consejera Mayor del Consejo
-            Regional Indígena del Cauca (CRIC) y una de las organizadoras de la histórica Minga
-            Indígena de 2008. Es Representante a la Cámara y una figura fundamental en la defensa de la
-            vida, el territorio y los derechos de los pueblos originarios de Colombia.
-          </p>
-
-          <p class="bio-text">
-            Su candidatura a la vicepresidencia es un hito histórico: representa a los pueblos
-            indígenas, a las mujeres, a los campesinos y a todos los que durante siglos fueron
-            excluidos del poder político en Colombia.
-          </p>
-
-          <p class="bio-text">
-            Para el Magdalena, la candidatura de Aida es especialmente significativa por la fuerte
-            presencia de los pueblos <strong>Arhuaco, Kogui, Wiwa y Kankuamo</strong> en la Sierra
-            Nevada de Santa Marta, cuya protección y autonomía territorial son una prioridad
-            programática de la fórmula.
-          </p>
-        </article>
-      </div>
-
-      <div class="quote-box">
-        <p class="quote-text">
-          "Se mantendrá y profundizará el legado del gobierno de Gustavo Petro: ¡Vamos por más!"
-        </p>
-        <p class="quote-author">
-          — Iván Cepeda Castro · Candidato a la Presidencia de la República
-        </p>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-inner footer-inner-centered">
-      <div class="footer-logo"><span>Magdalena</span> por el Cambio</div>
+      <div class="footer-logo">
+        <span>Magdalena</span> por el Cambio
+      </div>
       <div class="footer-text">
         Campaña Presidencial Iván Cepeda & Aida Quilcué · Pacto Histórico · Colombia 2026
       </div>
