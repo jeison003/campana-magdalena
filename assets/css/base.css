@@ -77,6 +77,21 @@ section {
   color: var(--color-secondary);
 }
 
+.section-subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  margin-top: 8px;
+  margin-bottom: 14px;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+.section-subtitle .acc {
+  color: var(--color-secondary);
+}
+
 .section-description,
 .section-desc {
   max-width: 760px;
