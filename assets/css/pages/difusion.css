@@ -1,56 +1,65 @@
+.difusion-page {
+    background: var(--color-bg);
+}
+
+/* HERO */
+
 .difusion-page .eventos-hero {
     background:
-        radial-gradient(circle at 82% 22%, rgba(84, 69, 149, 0.18), transparent 30%),
-        linear-gradient(180deg, #000000 0%, #080808 100%);
-    border-bottom: 1px solid var(--color-border-soft);
-    padding: 72px 0 48px;
+        radial-gradient(circle at 88% 18%, rgba(84, 69, 149, 0.08), transparent 28%),
+        var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: 78px 0 54px;
 }
 
 .difusion-page .section-title .acc,
 .difusion-page .eventos-section-title .acc,
 .difusion-page .galeria-title .acc {
-    color: var(--color-secondary);
+    color: var(--color-primary);
 }
 
 .difusion-page .section-desc {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--color-text-muted);
-    line-height: 1.8;
-    max-width: 760px;
+    line-height: 1.7;
+    max-width: 780px;
 }
 
+/* EVENTOS */
+
 .difusion-page .eventos-section {
-    padding: 58px 0;
-    background: #000000;
+    padding: 64px 0;
+    background: #ffffff;
 }
 
 .difusion-page .eventos-section-title {
-    font-size: clamp(2.6rem, 5vw, 4.6rem);
-    margin-bottom: 30px;
+    font-size: clamp(2.8rem, 5vw, 4.8rem);
+    margin-bottom: 34px;
+    color: var(--color-text);
 }
 
 .difusion-page .eventos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 18px;
+    gap: 22px;
 }
 
 .difusion-page .evento-card {
-    background: linear-gradient(180deg, rgba(21, 21, 21, 0.98), rgba(10, 10, 10, 0.98));
-    border: 1px solid rgba(84, 69, 149, 0.22);
-    border-radius: var(--radius-md);
+    background: #ffffff;
+    border: 1px solid var(--color-border);
+    border-radius: 22px;
     overflow: hidden;
-    transition: border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .difusion-page .evento-card:hover {
-    border-color: rgba(243, 147, 13, 0.35);
-    transform: translateY(-2px);
-    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.11);
 }
 
 .difusion-page .evento-img {
-    height: 168px;
+    height: 180px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,35 +72,35 @@
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 100%),
+        linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.14) 100%),
         repeating-linear-gradient(90deg,
-            transparent 0 22px,
-            rgba(255, 255, 255, 0.025) 22px 23px);
+            transparent 0 24px,
+            rgba(255, 255, 255, 0.12) 24px 25px);
     pointer-events: none;
 }
 
 .difusion-page .evento-img--green {
-    background: linear-gradient(135deg, rgba(84, 69, 149, 0.88), rgba(17, 17, 17, 0.95));
+    background: linear-gradient(135deg, #5a4bb7, #f3930d);
 }
 
 .difusion-page .evento-img--wine {
-    background: linear-gradient(135deg, rgba(135, 64, 136, 0.88), rgba(17, 17, 17, 0.95));
+    background: linear-gradient(135deg, #874088, #5a4bb7);
 }
 
 .difusion-page .evento-img--olive {
-    background: linear-gradient(135deg, rgba(243, 147, 13, 0.78), rgba(17, 17, 17, 0.95));
+    background: linear-gradient(135deg, #f3930d, #e72d3f);
 }
 
 .difusion-page .evento-img--blue {
-    background: linear-gradient(135deg, rgba(84, 69, 149, 0.78), rgba(0, 0, 0, 0.96));
+    background: linear-gradient(135deg, #244a8f, #5a4bb7);
 }
 
 .difusion-page .evento-img--purple {
-    background: linear-gradient(135deg, rgba(135, 64, 136, 0.84), rgba(0, 0, 0, 0.96));
+    background: linear-gradient(135deg, #874088, #f3930d);
 }
 
 .difusion-page .evento-img--teal {
-    background: linear-gradient(135deg, rgba(243, 147, 13, 0.68), rgba(84, 69, 149, 0.82));
+    background: linear-gradient(135deg, #2da84a, #5a4bb7);
 }
 
 .difusion-page .evento-img-placeholder {
@@ -102,68 +111,66 @@
     align-items: center;
     gap: 8px;
     font-size: 0.78rem;
-    color: rgba(245, 243, 239, 0.74);
+    color: rgba(255, 255, 255, 0.92);
     text-align: center;
     padding: 18px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
+    font-weight: 900;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
 }
 
 .difusion-page .evento-img-icon {
-    font-size: 2rem;
-    opacity: 0.72;
+    font-size: 2.1rem;
 }
 
 .difusion-page .evento-date-badge {
     position: absolute;
-    top: 12px;
-    left: 12px;
+    top: 14px;
+    left: 14px;
     z-index: 2;
-    background: var(--color-secondary);
-    border-radius: var(--radius-sm);
-    padding: 5px 11px;
-    font-family: var(--font-body);
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 6px 12px;
     font-size: 0.74rem;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: 0.12em;
+    font-weight: 900;
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
+    box-shadow: var(--shadow-soft);
 }
 
 .difusion-page .evento-type-badge {
     position: absolute;
-    top: 12px;
-    right: 12px;
+    top: 14px;
+    right: 14px;
     z-index: 2;
-    background: rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.92);
     border-radius: 999px;
-    padding: 4px 10px;
+    padding: 5px 11px;
     font-size: 0.68rem;
-    color: var(--color-text-muted);
-    font-weight: 800;
+    color: var(--color-secondary);
+    font-weight: 900;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    box-shadow: var(--shadow-soft);
 }
 
 .difusion-page .evento-body {
-    padding: 18px 20px 20px;
+    padding: 20px 22px 22px;
 }
 
 .difusion-page .evento-location {
-    font-size: 0.74rem;
-    color: var(--color-secondary);
-    font-weight: 800;
-    letter-spacing: 0.18em;
+    font-size: 0.76rem;
+    color: var(--color-primary);
+    font-weight: 900;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     margin-bottom: 8px;
 }
 
 .difusion-page .evento-title {
     font-family: var(--font-display);
-    font-size: 1.75rem;
+    font-size: 2rem;
     color: var(--color-text);
     line-height: 0.95;
     margin-bottom: 10px;
@@ -171,96 +178,99 @@
 }
 
 .difusion-page .evento-desc {
-    font-size: 0.94rem;
+    font-size: 0.96rem;
     color: var(--color-text-muted);
-    line-height: 1.65;
+    line-height: 1.6;
 }
 
+/* COMPARTIR */
+
 .difusion-page .share-wrap {
-    padding-top: 38px;
+    padding-top: 42px;
     text-align: center;
 }
 
 .difusion-page .share-card {
-    background:
-        linear-gradient(135deg, rgba(84, 69, 149, 0.16), rgba(135, 64, 136, 0.12));
-    border: 1px dashed rgba(243, 147, 13, 0.35);
-    border-radius: var(--radius-md);
-    padding: 32px;
+    background: var(--color-bg);
+    border: 1px dashed var(--color-primary);
+    border-radius: 24px;
+    padding: 34px;
     display: inline-block;
-    min-width: 320px;
+    min-width: 340px;
     max-width: 100%;
+    box-shadow: var(--shadow-soft);
 }
 
 .difusion-page .share-plus {
     font-family: var(--font-display);
-    font-size: 3.2rem;
+    font-size: 3.5rem;
     line-height: 0.8;
-    margin-bottom: 10px;
-    color: var(--color-secondary);
+    margin-bottom: 12px;
+    color: var(--color-primary);
 }
 
 .difusion-page .share-title {
     font-family: var(--font-display);
-    font-size: 2rem;
+    font-size: 2.25rem;
     line-height: 0.95;
     color: var(--color-text);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     text-transform: uppercase;
 }
 
 .difusion-page .share-text {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--color-text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 18px;
     line-height: 1.6;
 }
 
+/* GALERÍA */
+
 .difusion-page .galeria-section {
-    background:
-        radial-gradient(circle at 14% 18%, rgba(135, 64, 136, 0.16), transparent 28%),
-        linear-gradient(180deg, #080808 0%, #000000 100%);
-    border-top: 1px solid rgba(84, 69, 149, 0.16);
-    padding: 58px 0;
+    background: var(--color-bg);
+    border-top: 1px solid var(--color-border);
+    padding: 68px 0;
 }
 
 .difusion-page .galeria-title {
-    font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+    font-size: clamp(2.6rem, 5vw, 4.6rem);
+    color: var(--color-text);
 }
 
 .difusion-page .galeria-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-    margin-top: 26px;
+    gap: 14px;
+    margin-top: 30px;
 }
 
 .difusion-page .galeria-item {
     aspect-ratio: 1;
-    background:
-        linear-gradient(135deg, rgba(84, 69, 149, 0.12), rgba(10, 10, 10, 0.95));
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(84, 69, 149, 0.22);
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid var(--color-border);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.72rem;
-    color: var(--color-text-soft);
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
     text-align: center;
-    padding: 12px;
+    padding: 14px;
     line-height: 1.35;
-    font-weight: 800;
+    font-weight: 900;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    transition: border-color var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
 }
 
 .difusion-page .galeria-item:hover {
-    border-color: rgba(243, 147, 13, 0.35);
-    transform: translateY(-2px);
-    background:
-        linear-gradient(135deg, rgba(243, 147, 13, 0.12), rgba(84, 69, 149, 0.14));
+    transform: translateY(-3px);
+    border-color: var(--color-primary);
 }
+
+/* RESPONSIVE */
 
 @media (max-width: 900px) {
     .difusion-page .galeria-grid {
@@ -270,7 +280,7 @@
 
 @media (max-width: 640px) {
     .difusion-page .eventos-hero {
-        padding: 52px 0 34px;
+        padding: 52px 0 36px;
     }
 
     .difusion-page .eventos-grid {
@@ -288,6 +298,6 @@
     }
 
     .difusion-page .evento-title {
-        font-size: 1.5rem;
+        font-size: 1.65rem;
     }
 }
