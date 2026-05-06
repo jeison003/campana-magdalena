@@ -215,8 +215,8 @@
 }
 
 .stats-bar {
-  padding: 54px 0;
-  background: var(--color-bg);
+  padding: 30px 0 10px;
+  background: transparent;
 }
 
 .stats-inner {

@@ -36,6 +36,15 @@
   border-color: var(--color-primary);
 }
 
+.card-base {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 28px;
+  padding: 34px;
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-normal);
+}
+
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border-soft);
