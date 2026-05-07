@@ -62,6 +62,34 @@
   line-height: 1.1;
 }
 
+.brand-stripe {
+  width: min(100%, 430px);
+  height: 6px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 18px 0 30px;
+}
+
+.stripe-orange {
+  background: #f3930d;
+}
+
+.stripe-blue {
+  background: #244a8f;
+}
+
+.stripe-red {
+  background: #e72d3f;
+}
+
+.stripe-green {
+  background: #2da84a;
+}
+
+.stripe-purple {
+  background: #874088;
+}
+
 .brand-title {
   font-family: var(--font-body);
   font-size: 1rem;
@@ -189,4 +217,13 @@
   .footer-inner {
     flex-direction: column;
   }
+}
+
+/* Fondos alternados para la pagina de Candidatos */
+.candidatos-background-ivan {
+  background-color: var(--color-bg);
+}
+
+.candidatos-background-aida {
+  background-color: var(--color-surface);
 }
