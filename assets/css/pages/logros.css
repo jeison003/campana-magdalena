@@ -137,7 +137,7 @@
 .logros-page .dep-map-wrap {
   position: sticky;
   top: 100px;
-  padding: 20px;
+  padding: 5px;
   border-radius: 22px;
   background: var(--color-bg);
   border: 1px solid var(--color-border);
@@ -422,7 +422,11 @@
   }
 
   .logros-page .dep-map-wrap {
-    display: none;
+    position: relative;
+    top: auto;
+    margin-bottom: 24px;
+    max-width: 400px;
+    margin-inline: auto;
   }
 
   .logros-page .falta-grid {
