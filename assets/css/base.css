@@ -103,3 +103,7 @@ section {
 p {
   line-height: 1.75;
 }
+
+.acc-pruple {
+  color: var(--color-secondary);
+}

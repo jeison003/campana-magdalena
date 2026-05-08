@@ -38,10 +38,9 @@
 .brand-badge {
   width: 42px;
   height: 42px;
-  border-radius: var(--radius-sm);
   display: grid;
   place-items: center;
-  background: var(--color-secondary);
+  background: transparent;
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 1rem;
