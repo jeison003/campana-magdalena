@@ -1,41 +1,50 @@
 :root {
-  /* COLORES BASE */
-  --color-primary: #f28c00;
-  /* naranja */
-  --color-secondary: #5a4bb7;
-  /* morado */
-  --color-accent: #e63946;
-  /* rojo apoyo */
+  /* COLORES DE MARCA */
+  --color-primary: #FFC107;
+  /* amarillo: botones CTA, textos sobre azul */
+  --color-secondary: #3636B7;
+  /* azul: fondos, navbar, footer, secciones dominantes */
+  --color-accent: #E8341E;
+  /* rojo-naranja: detalles, palabras clave, CTA navbar */
+  --color-brand-coral: #E87060;
+  /* coral: corazón decorativo, sección voluntariado */
 
   /* FONDOS */
-  --color-bg: #f4f1ea;
-  --color-bg-soft: #ffffff;
-  --color-surface: #ffffff;
+  --color-bg: #FFFFFF;
+  --color-bg-soft: #F0F4FF;
+  --color-surface: #FFFFFF;
 
   /* TEXTOS */
   --color-text: #1a1a1a;
-  --color-text-muted: #555;
-  --color-text-soft: #888;
+  --color-text-muted: #555555;
+  --color-text-soft: #888888;
 
   /* BORDES */
-  --color-border: #e6e2dc;
-  --color-border-soft: #efebe5;
+  --color-border: rgba(54, 54, 183, 0.12);
+  --color-border-soft: rgba(54, 54, 183, 0.07);
 
   /* TIPOGRAFÍA */
   --font-display: "Bebas Neue", sans-serif;
-  --font-heading: "Barlow Condensed", sans-serif;
-  --font-body: "Nunito Sans", sans-serif;
+  --font-body: "Nunito", sans-serif;
 
   /* LAYOUT */
   --container-width: 1180px;
 
+  /* TAMAÑOS TIPOGRÁFICOS */
+  --text-hero: clamp(40px, 8vw, 72px);
+  --text-h2: clamp(24px, 4vw, 36px);
+
+  /* ESPACIADO */
+  --section-padding: clamp(48px, 8vw, 96px) clamp(16px, 4vw, 64px);
+
   /* UI */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
 
   --shadow-soft: 0 8px 20px rgba(0, 0, 0, 0.08);
-  --shadow-primary: 0 10px 30px rgba(242, 140, 0, 0.2);
+  --shadow-primary: 0 10px 30px rgba(54, 54, 183, 0.15);
+  --shadow-card: 0 2px 12px rgba(54, 54, 183, 0.10);
 
   --header-height: 78px;
 
