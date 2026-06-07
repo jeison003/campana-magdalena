@@ -123,6 +123,31 @@
   background: rgba(54, 54, 183, 0.08);
 }
 
+.social-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: var(--color-secondary);
+  font-size: 1.05rem;
+  transition: color 0.2s, background 0.2s;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  color: #ffffff;
+  background: var(--color-secondary);
+}
+
 .menu-toggle {
   display: none;
   flex-direction: column;
