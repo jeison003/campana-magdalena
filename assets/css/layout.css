@@ -226,6 +226,10 @@
     display: flex;
   }
 
+  .social-links {
+    display: none;
+  }
+
   .main-nav {
     display: none;
     position: absolute;
