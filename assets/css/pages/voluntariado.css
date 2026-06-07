@@ -5,11 +5,21 @@
 /* HERO */
 
 .voluntariado-page .vol-hero {
-    background:
-        radial-gradient(circle at 88% 18%, rgba(54, 54, 183, 0.06), transparent 28%),
-        var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
+    background: var(--color-secondary);
+    border-bottom: none;
     padding: 78px 0 54px;
+}
+
+.voluntariado-page .vol-hero .section-title {
+    color: #ffffff;
+}
+
+.voluntariado-page .vol-hero .section-title .acc {
+    color: var(--color-primary);
+}
+
+.voluntariado-page .vol-hero .section-desc {
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .voluntariado-page .section-title .acc,
@@ -23,6 +33,16 @@
     color: var(--color-text-muted);
     line-height: 1.7;
     max-width: 760px;
+}
+
+/* CTA section — texto blanco sobre fondo azul */
+.voluntariado-page .cta-voluntariado .section-title,
+.voluntariado-page .cta-voluntariado .section-subtitle {
+    color: #ffffff;
+}
+
+.voluntariado-page .cta-voluntariado .section-subtitle .acc {
+    color: var(--color-primary);
 }
 
 /* CARDS */
