@@ -5,7 +5,7 @@
   gap: 10px;
   min-height: 48px;
   padding: 12px 24px;
-  border-radius: var(--radius-sm);
+  border-radius: 999px;
   font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 800;
@@ -15,25 +15,46 @@
 }
 
 .btn-primary {
-  background: var(--color-secondary);
-  color: #ffffff;
-  box-shadow: var(--shadow-secondary);
+  background: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 .btn-primary:hover {
-  background: #db830c;
+  background: #e09400;
   transform: translateY(-1px);
 }
 
 .btn-outline {
-  border: 1px solid var(--color-border-soft);
-  color: var(--color-text);
+  border: 2px solid var(--color-secondary);
+  color: var(--color-secondary);
   background: transparent;
 }
 
 .btn-outline:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: var(--color-primary);
+  background: var(--color-secondary);
+  color: #ffffff;
+  border-color: var(--color-secondary);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background: #2a2aa0;
+  color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.btn-danger {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background: #c42d17;
+  transform: translateY(-1px);
 }
 
 .card-base {
@@ -58,8 +79,8 @@
   margin-bottom: 14px;
   padding: 6px 10px;
   border-radius: 999px;
-  background: rgba(84, 69, 149, 0.18);
-  border: 1px solid rgba(84, 69, 149, 0.3);
+  background: rgba(54, 54, 183, 0.10);
+  border: 1px solid rgba(54, 54, 183, 0.22);
   color: var(--color-secondary);
   font-family: var(--font-body);
   font-size: 0.72rem;

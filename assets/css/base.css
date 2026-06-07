@@ -16,7 +16,7 @@ section {
 
 ::selection {
   background: var(--color-secondary);
-  color: #000000;
+  color: #ffffff;
 }
 
 .text-primary {

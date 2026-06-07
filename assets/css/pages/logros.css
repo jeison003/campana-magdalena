@@ -6,7 +6,7 @@
 
 .logros-page .logros-hero {
   background:
-    radial-gradient(circle at 88% 18%, rgba(84, 69, 149, 0.08), transparent 28%),
+    radial-gradient(circle at 88% 18%, rgba(54, 54, 183, 0.06), transparent 28%),
     var(--color-bg);
   border-bottom: 1px solid var(--color-border);
   padding: 78px 0 54px;
@@ -21,7 +21,7 @@
 
 .logros-page .section-title .acc,
 .logros-page .logo-title .acc {
-  color: var(--color-primary);
+  color: var(--color-secondary);
 }
 
 .logros-page .section-desc {
@@ -101,7 +101,7 @@
   height: 12px;
   border-radius: 999px;
   background: var(--color-primary);
-  box-shadow: 0 0 0 6px rgba(243, 147, 13, 0.16);
+  box-shadow: 0 0 0 6px rgba(255, 193, 7, 0.22);
   flex-shrink: 0;
 }
 
@@ -117,11 +117,9 @@
   flex: 1;
   height: 5px;
   background: linear-gradient(90deg,
-      #f3930d 0 20%,
-      #244a8f 20% 40%,
-      #e72d3f 40% 60%,
-      #2da84a 60% 80%,
-      #874088 80% 100%);
+      var(--color-secondary) 0 40%,
+      var(--color-primary) 40% 70%,
+      var(--color-accent) 70% 100%);
   border-radius: 999px;
 }
 
@@ -149,7 +147,7 @@
 }
 
 .logros-page .dep-map path {
-  fill: rgba(84, 69, 149, 0.12);
+  fill: rgba(54, 54, 183, 0.12);
   stroke: var(--color-secondary);
 }
 
@@ -204,15 +202,15 @@
 }
 
 .logros-page .logro-group-header:hover {
-  background: rgba(84, 69, 149, 0.04);
+  background: rgba(54, 54, 183, 0.04);
 }
 
 .logros-page .logro-group-icon {
   width: 42px;
   height: 42px;
   border-radius: 14px;
-  background: rgba(84, 69, 149, 0.1);
-  border: 1px solid rgba(84, 69, 149, 0.18);
+  background: rgba(54, 54, 183, 0.10);
+  border: 1px solid rgba(54, 54, 183, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -231,9 +229,9 @@
 
 .logros-page .logro-group-count {
   font-size: 0.75rem;
-  color: var(--color-primary);
-  background: rgba(243, 147, 13, 0.12);
-  border: 1px solid rgba(243, 147, 13, 0.22);
+  color: var(--color-secondary);
+  background: rgba(54, 54, 183, 0.08);
+  border: 1px solid rgba(54, 54, 183, 0.16);
   padding: 5px 10px;
   border-radius: 999px;
   margin-right: 8px;
@@ -283,7 +281,7 @@
 
 .logros-page .logro-list li::before {
   content: "→";
-  color: var(--color-primary);
+  color: var(--color-secondary);
   font-weight: 900;
   flex-shrink: 0;
 }
@@ -369,7 +367,7 @@
 }
 
 .logros-page .falta-arrow {
-  color: var(--color-primary);
+  color: var(--color-secondary);
   font-size: 1.2rem;
   flex-shrink: 0;
   font-weight: 900;
@@ -378,7 +376,7 @@
 /* CIERRE */
 
 .logros-page .logros-cierre {
-  background: var(--color-primary);
+  background: var(--color-secondary);
   padding: 56px 0;
   text-align: center;
 }

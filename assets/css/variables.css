@@ -1,7 +1,7 @@
 :root {
   /* COLORES DE MARCA */
-  --color-primary: #FFC107;
-  /* amarillo: botones CTA, textos sobre azul */
+  --color-primary: #FFA800;
+  /* amarillo-naranja: botones CTA, textos sobre azul */
   --color-secondary: #3636B7;
   /* azul: fondos, navbar, footer, secciones dominantes */
   --color-accent: #E8341E;

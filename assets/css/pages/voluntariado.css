@@ -6,7 +6,7 @@
 
 .voluntariado-page .vol-hero {
     background:
-        radial-gradient(circle at 88% 18%, rgba(84, 69, 149, 0.08), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(54, 54, 183, 0.06), transparent 28%),
         var(--color-bg);
     border-bottom: 1px solid var(--color-border);
     padding: 78px 0 54px;
@@ -15,7 +15,7 @@
 .voluntariado-page .section-title .acc,
 .voluntariado-page .wa-title-main .acc,
 .voluntariado-page .form-title-main .acc {
-    color: var(--color-primary);
+    color: var(--color-secondary);
 }
 
 .voluntariado-page .section-desc {
@@ -53,16 +53,16 @@
 }
 
 .voluntariado-page .vol-card.featured {
-    background: var(--color-primary);
+    background: var(--color-secondary);
     color: #ffffff;
-    border-color: var(--color-primary);
+    border-color: var(--color-secondary);
 }
 
 .voluntariado-page .vol-icon {
     width: 58px;
     height: 58px;
-    background: rgba(84, 69, 149, 0.1);
-    border: 1px solid rgba(84, 69, 149, 0.18);
+    background: rgba(54, 54, 183, 0.10);
+    border: 1px solid rgba(54, 54, 183, 0.18);
     border-radius: 18px;
     display: flex;
     align-items: center;
@@ -122,7 +122,7 @@
 
 .voluntariado-page .vol-perk::before {
     content: "✓";
-    color: var(--color-primary);
+    color: var(--color-secondary);
     font-weight: 900;
     flex-shrink: 0;
 }
@@ -200,7 +200,7 @@
 
 .voluntariado-page .wa-group-btn:hover {
     transform: translateY(-1px);
-    background: #d87900;
+    background: #e09400;
 }
 
 .voluntariado-page .wa-group-btn.secondary {
@@ -208,7 +208,7 @@
 }
 
 .voluntariado-page .wa-group-btn.secondary:hover {
-    background: #4b3ca3;
+    background: #2a2aa0;
 }
 
 .voluntariado-page .wa-group-label {
@@ -348,8 +348,8 @@
 .voluntariado-page .form-input:focus,
 .voluntariado-page .form-select:focus,
 .voluntariado-page .form-textarea:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 4px rgba(243, 147, 13, 0.12);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 0 4px rgba(54, 54, 183, 0.12);
 }
 
 .voluntariado-page .form-select {
@@ -381,7 +381,7 @@
 .voluntariado-page .form-check input[type="checkbox"] {
     width: 16px;
     height: 16px;
-    accent-color: var(--color-primary);
+    accent-color: var(--color-secondary);
     cursor: pointer;
 }
 
@@ -391,7 +391,7 @@
     justify-content: center;
     gap: 10px;
     background: var(--color-primary);
-    color: #fff;
+    color: var(--color-secondary);
     font-family: var(--font-body);
     font-size: 0.92rem;
     font-weight: 900;
@@ -407,7 +407,7 @@
 }
 
 .voluntariado-page .form-submit:hover {
-    background: #d87900;
+    background: #e09400;
     transform: translateY(-1px);
 }
 
